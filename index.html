@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUGGYFLEX</title>
+    <link rel="shortcut icon" href="src/icon.jpeg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="note">
+        <button id="cut" onclick="cut()">&times;
+        </button>
+        <H3>NOTICE</H3>
+        <p> Site may display ads as it relies on free APIs that include advertisements. For an improved browsing
+            experience, consider using an ad-blocking extension</p>
+    </div>
+
+
+    <nav>
+        <span id="logo">
+            <p onclick="trending()">BUGGYFLEX</p>
+        </span>
+
+
+
+        <input id="search" type="text" placeholder="Search movies" autocomplete="off">
+        <div class="search_box">
+
+            <div class="item">
+
+
+            </div>
+        </div><!--  
+
+        <button id="search_but" onclick="search()"></button>
+         <button id="account"></button>-->
+    </nav>
+
+
+
+
+    <section class="content">
+
+        <div class="swipe">
+        </div>
+        <div class="banner">
+            <script type="text/javascript">
+                atOptions = {
+                    'key': '04143e51e962e3332f58230a1ef89675',
+                    'format': 'iframe',
+                    'height': 300,
+                    'width': 160,
+                    'params': {}
+                };
+            </script>
+            <script type="text/javascript"
+                src="//www.highperformanceformat.com/04143e51e962e3332f58230a1ef89675/invoke.js"></script>
+            <script type='text/javascript'
+                src='//pl26253581.effectiveratecpm.com/7c/f3/1b/7cf31bff57b446c0cb37bc5a4c2b2332.js'></script>
+        </div>
+
+        <p id="content_Text">Trending This week</p>
+
+
+        <div class="video">
+
+
+
+
+        </div>
+
+    </section>
+    <style>
+      
+
+        .banner {
+            margin-top: 50px;
+         
+          
+            height: 100px;
+            display: flex;
+
+
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #cut {
+            font-size: xx-large;
+
+            position: relative;
+            border: none;
+            margin-left: auto;
+            bottom: 55px;
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            color: white;
+
+
+        }
+
+        .note {
+
+            position: absolute;
+            inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: auto;
+            background-color: rgb(13, 0, 32);
+            width: 300px;
+            height: 250px;
+            z-index: 10;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        #logo p:hover {
+            cursor: pointer;
+
+        }
+
+        body {
+            background-color: rgba(20, 19, 41, 0.973);
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .detail_pic {
+
+            height: 400px;
+
+        }
+
+        .inf {
+            display: flex;
+            justify-content: center;
+            height: 20px;
+            overflow: hidden;
+            text-align: center;
+
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .search_box {
+            padding: 10px;
+            border-radius: 10px;
+            position: fixed;
+            overflow: scroll;
+            display: none;
+
+            top: 70px;
+            right: 95px;
+            width: 300px;
+            height: auto;
+            max-height: 300px;
+            background-color: rgba(16, 15, 36, 0.925);
+
+
+        }
+
+        .search_box:hover {
+            display: block;
+        }
+
+
+
+        .first {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(16, 15, 36, 0.925);
+            padding: 10px;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+
+        }
+
+        .first p {
+            position: relative;
+            top: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+            height: 100%;
+
+
+
+
+
+        }
+
+
+
+
+
+        .item {
+
+            height: auto;
+            overflow-y: scroll;
+
+        }
+
+        .first {
+            margin: 8px;
+            height: 60px;
+        }
+
+        .search_box p {
+            margin-top: -40px;
+            margin-left: 30px;
+        }
+
+        .img_search {
+            height: 100%;
+            width: 180px;
+            font-size: small;
+            overflow: hidden;
+            background-image: url(src/that-time-i-got-reincarnated-as-a-slime-pictures-7ksbwoa7inx5qkvr.jpg);
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+
+        }
+
+        nav {
+            margin: 0;
+
+            position: fixed;
+            display: flex;
+            align-items: center;
+            border: transparent;
+            background-color: rgba(19, 17, 41, 0.904);
+            width: 100vw;
+            height: 70px;
+            display: flex;
+            z-index: 5;
+
+
+        }
+
+        .video_player {
+
+            width: 100%;
+            height: 600px;
+            display: flex;
+
+        }
+
+        iframe {
+            height: 98%;
+        }
+
+
+
+
+
+        .ep {
+
+            width: 40%;
+            height: 100%;
+        }
+
+
+
+
+        .detail {
+
+            width: 40%;
+        }
+
+        .detail_pic {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+        .detail_pic img {
+            width: 200px;
+            height: 250px;
+            object-position: center;
+            object-fit: fill;
+
+
+        }
+
+        #name {
+
+            margin-top: 10px;
+            font-size: large;
+        }
+
+        #para {
+            padding: 10px;
+            font-size: small;
+
+
+
+
+            width: 100%;
+
+
+            text-align: center;
+
+        }
+
+
+
+
+
+        #logo {
+
+            width: auto;
+            margin-left: 150px;
+            font-weight: bold;
+            font-size: x-large;
+        }
+
+        #search {
+            border: none;
+
+            padding-left: 10px;
+            height: 40px;
+            margin-right: 100px;
+
+            width: 300px;
+            border-radius: 20px;
+            margin-left: auto;
+
+            outline: none;
+        }
+
+        #search_but {
+            border: none;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            margin-right: 15px;
+            background-image: url(src/search.png);
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+
+
+
+
+
+        }
+
+
+        input:focus {
+            outline: none;
+
+
+        }
+
+        input:focus+.search_box {
+            display: block;
+        }
+
+
+        #account {
+            width: 35px;
+            height: 35px;
+            margin-right: 150px;
+            background-image: url(src/add-user.png);
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        .content {
+
+            position: relative;
+
+            width: 100vw;
+            height: auto;
+
+        }
+
+        .swipe {
+
+            position: relative;
+            top: 65px;
+
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+        }
+
+        .spotlight {
+
+            position: relative;
+            height: 100%;
+            flex-shrink: 0;
+            width: 100vw;
+            display: flex;
+            animation: move infinite ease 40s;
+
+
+        }
+
+        h3 {
+            margin-bottom: 20px;
+
+        }
+
+
+        .info {
+
+            border: 1px solid none;
+            width: 80%;
+
+
+            text-align: center;
+            padding-top: 300px;
+            height: 350px;
+
+
+        }
+
+        .info h3 {
+            font-size: 25px;
+        }
+
+        .info p {
+            margin-top: -15px;
+            margin-left: auto;
+            margin-right: auto;
+            border: none;
+            width: 90%;
+            font-size: 18px;
+        }
+
+        .info button {
+            margin-top: 20px;
+            border: none;
+            width: 70px;
+            height: 35px;
+            border-radius: 50px;
+            background-color: rgba(235, 14, 69, 0.897);
+            color: white;
+            margin-left: 20px;
+        }
+
+        .info button:hover {
+            background-color: rgb(255, 0, 170);
+        }
+
+        .pic {
+
+
+            width: 100%;
+            height: 580px;
+            background-image: url(src/that-time-i-got-reincarnated-as-a-slime-pictures-7ksbwoa7inx5qkvr.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        @keyframes move {
+            0% {
+                right: 0;
+            }
+
+            10% {
+                right: 0;
+            }
+
+            20% {
+                right: 100vw;
+            }
+
+            30% {
+                right: 100vw;
+            }
+
+            40% {
+                right: 200vw;
+            }
+
+            50% {
+                right: 200vw;
+            }
+
+            60% {
+                right: 300vw;
+            }
+
+            70% {
+                right: 300vw;
+            }
+
+            80% {
+                right: 400vw;
+            }
+
+            90% {
+                right: 400vw;
+            }
+
+            100% {
+                right: 0;
+
+            }
+
+
+
+
+
+
+
+        }
+
+        .video {
+          
+            display: flex;
+
+
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: fit-content;
+            justify-content: center;
+
+            height: auto;
+
+            padding-top: 100px;
+            background-color: rgba(20, 19, 41, 0.973);
+        }
+
+        .box {
+
+            margin: 10px;
+            margin-bottom: 20px;
+
+
+            height: 250px;
+            width: 200px;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .im {
+
+            width: 100%;
+            height: 100%;
+
+        }
+
+
+
+        p {
+
+            text-align: center;
+        }
+
+        #content_Text {
+            position: relative;
+            top: 80px;
+            font-size: 40px;
+            font-weight: bold;
+            margin-left: 50px;
+            text-align: start;
+
+        }
+
+        .box:hover {
+            cursor: pointer;
+        }
+
+        @media (width <1425px) {
+            .banner {
+                margin-top: 70px;
+            }
+
+            .video_player {
+                height: 500px;
+            }
+
+
+
+
+            .info {
+
+                position: absolute;
+                background-color: rgba(7, 4, 43, 0.377);
+                width: 100%;
+
+
+            }
+
+            .info h3 {
+                margin-top: 80px;
+
+            }
+
+            .info p {
+                font-size: 18px;
+            }
+
+
+
+        }
+
+        @media (width<=1262px) {
+            .video_player {
+                height: 480px;
+            }
+
+            .ep {
+                display: none;
+            }
+
+        }
+
+        @media (Width <1000px) {
+
+
+            .video_player {
+                display: flex;
+                flex-direction: column;
+
+            }
+
+            .detail {
+                display: none;
+                position: relative;
+                top: 100px;
+                height: 400px;
+
+
+
+            }
+
+
+
+
+        }
+
+
+
+        @media (width <959px) {
+            .banner {
+                margin-top: 80px;
+            }
+
+            .video_player {
+                height: 460px;
+            }
+
+            #search {
+
+                margin-right: 20px;
+                width: 300px;
+                height: 40px;
+            }
+
+            .search_box {
+                right: 10px;
+            }
+
+            #logo {
+                margin-left: 20px;
+            }
+
+            .swipe {
+                height: 480px;
+            }
+
+            .info p {
+
+                font-size: 15px;
+
+            }
+
+            .info h3 {
+                margin-top: -10px;
+
+
+            }
+
+
+
+        }
+
+        @media (width <750px) {
+            .video_player {
+                height: 330px;
+            }
+
+            .swipe {
+                height: 350px;
+
+            }
+
+            .pic {
+                height: 350px;
+            }
+
+            .info p {
+
+                height: 40px;
+                overflow: hidden;
+
+                font-size: 15px;
+                margin-bottom: -10px;
+
+            }
+
+            .info h3 {
+                margin-top: -75px;
+
+
+
+
+            }
+
+            .box {
+
+                position: relative;
+
+
+
+
+
+
+                width: 200px;
+                height: 250px;
+                margin-bottom: 100px;
+
+
+            }
+
+            .box p {
+
+                width: 170px;
+            }
+
+            .video {
+                padding: 0;
+                gap: 0;
+                padding-top: 100px;
+
+                display: flex;
+                justify-content: center;
+            }
+
+        }
+
+        @media (width <550px) {
+            .video_player {
+                height: 240px;
+            }
+
+            #search {
+                margin-top: 10px;
+                margin-right: 10px;
+                width: 200px;
+                height: 30px;
+            }
+
+            .search_box {
+                top: 60px;
+                width: 200px;
+                font-size: 15px;
+
+            }
+
+            .swipe {
+
+                margin-top: -10px;
+
+
+                height: 250px;
+            }
+
+
+
+            .video {
+                border: none;
+
+
+                width: fit-content;
+
+            }
+
+            .box {
+                width: 180px;
+                height: 200px;
+            }
+
+            #content_Text {
+                font-size: 25px;
+
+            }
+
+            /*
+
+    .box {
+
+        width: 20px;
+        margin-right: 130px;
+        margin-bottom: 120px;
+        height: 100px;
+        background-size: contain;
+    }
+
+    .im {
+        border: 1px solid none;
+        height: 205px;
+        width: 180px;
+
+
+        background-position: center;
+        background-size: contain !important;
+        background-repeat: no-repeat;
+    }
+
+*/
+
+            .info h3 {
+                margin-top: -175px;
+
+
+
+
+            }
+
+
+
+
+        }
+
+        @media (width <=399px) {
+            #logo {
+                margin-left: 10px;
+                margin-top: 5px;
+                font-size: large;
+            }
+
+            #search {
+                margin-top: 4px;
+                margin-right: 10px;
+                width: 180px;
+                height: 30px;
+            }
+
+            .search_box {
+                right: 0;
+
+                width: 180px;
+
+            }
+
+            .box {
+                width: 100px;
+                height: 120px;
+            }
+
+        }
+    </style>
+    <script>
+        let swipe = document.getElementsByClassName('swipe')[0]
+        let video = document.getElementsByClassName('video')[0]
+        let search_box = document.getElementsByClassName('search_box')[0]
+        let fin = document.getElementById('search')
+        let item = document.getElementsByClassName('item')[0]
+        let but = video.querySelectorAll('button')
+        let note = document.getElementsByClassName('note')[0]
+        let apikey = '5eb9bfdc3b51661510ad81b5664d2404'
+        function cut() {
+            note.style.display = "none";
+
+        }
+
+
+        function search() {
+        }
+        fin.addEventListener("input", (data) => {
+
+            //     console.log(fin.value.trim())
+            search()
+
+        })
+        function search(params) { // function to search
+            let query = fin.value.trim()
+            let url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${apikey}`
+            fetch(url)
+                .then(res => res.json())
+                .then(a => {
+
+
+                    let i = 0
+                    if (a.results.length >= 20) {
+                        item.innerHTML = ' '
+                        while (i != 20) {
+
+                            item.innerHTML += `<div class="first" data-id="find"  id="${a.results[i].id}">
+
+
+
+                    <div class="img_search" data-id="find"   id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ; >
+
+                    </div>
+                    <p  data-id="find" id="${a.results[i].id}" >${a.results[i].title}</p>
+                    
+                </div>`
+                            i++
+
+
+                        }
+                        //        console.log(a.results)
+
+                    }
+                    else {
+                        while (i < a.results.length) {
+                            item.innerHTML += `<div class="first" id="${a.results[i].id}"   >
+
+
+
+                    <div class="img_search" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ; >
+
+                    </div>
+                    <p>${a.results[i].title}</p>
+                    
+                </div>`
+                            i++
+                            //  console.log('less', i)
+
+                        }
+                    }
+
+                })
+
+        }
+
+
+        let url = ``
+        let content = []
+        function get_page(page) { // function to chage page 
+            let temp = page;
+            while (page != temp + 5) {
+                fetch(`https://api.themoviedb.org/3/trending/movie/week?lanuage=en&api_key=${apikey}&page=${page}`)
+                    .then(sa => sa.json())
+                    .then(data => {
+                        data.results.forEach(element => {
+                            content.push(element)
+
+                        });
+
+
+
+
+
+                    })
+
+                page++
+
+
+            }
+
+
+
+
+
+        }
+        //     console.log(content)
+
+        setTimeout(() => {// function to get the content
+            //   console.log('sa ' + content.length)
+            for (let index = 0; index < content.length; index++) {
+
+
+
+                video.innerHTML += `
+<div class="box" >
+<div class="im" id="${content[index].id}">
+    <img src="https://image.tmdb.org/t/p/w500${content[index].poster_path}" id="${content[index].id}"> </img> 
+    </div>
+<div class="inf">
+<p>${content[index].title}</p>
+</div>
+</div>
+`
+
+
+
+            }
+
+        }, 1000) // what the fuck are you looking at i know this line is curse but i  have no idea how async and await work so i use settimeout T_T 
+
+
+
+
+
+
+        get_page(1);
+
+
+
+
+
+
+
+
+
+
+
+
+        // function to get the trending movies
+        function trending() {
+            swipe.innerHTML = ` `
+            fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en&api_key=${apikey}`)
+                .then(data => data.json())
+                .then(res => {
+                    for (let i = 0; i != 5; i++) {
+
+                        swipe.innerHTML += `
+        <div class="spotlight">
+        <div class="info">
+            <h3>${res.results[i].title}</h3>
+            <p>${res.results[i].overview}</p>
+            <button id="${res.results[i].id}">watch</button><button>Details</button>
+        </div>
+        <div class="pic"  style="background-image: url( https://image.tmdb.org/t/p/w500${res.results[i].backdrop_path}         );">
+
+        </div>
+
+    </div>
+        `
+
+                    }
+
+
+
+                })
+
+        }
+        trending()
+
+
+
+        document.addEventListener('click', (e) => {
+            note.style.display = "none";
+            if (isNaN(parseInt(e.target.id))) {
+
+
+            } else {
+
+                console.log(e.target.id)
+
+
+                play(e.target.id)
+                // search_box.style.display="none"
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+        })
+        function play(id) {
+            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
+                .then(e => e.json())
+                .then(res => {
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+
+                    //    console.log(res)
+                    swipe.innerHTML = `<div class="video_player">
+         <div class="ep"></div>
+     
+         <iframe id="if" src=""" frameborder="0" height="100%" width="100%" allowfullscreen sandbox></iframe>
+         <div class="detail">
+             <div class="detail_pic">
+                 <img src="https://image.tmdb.org/t/p/w500${res.backdrop_path}"></img>
+              <p id="name">${res.title}</p>
+                 <p id="para">${res.overview}</p>
+                 
+     
+             </div>
+     
+     
+         </div>
+       
+     </div> `
+                    console.log(id)
+                    let i = document.getElementsByTagName('iframe')[0]
+                    i.src = `https://vidsrc.xyz/embed/movie/${id}`
+
+
+
+                })
+
+
+        }
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
