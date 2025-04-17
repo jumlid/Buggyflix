@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUGGYFLEX</title>
+    <link rel="shortcut icon" href="src/icon.jpeg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="note">
+        <button id="cut" onclick="cut()">&times;
+        </button>
+        <H3>NOTICE</H3>
+        <p> Site may display ads as it relies on free APIs that include advertisements. For an improved browsing
+            experience, consider using an ad-blocking extension</p>
+        <br>
+        <p style="margin-left: auto;">~Jumli (dev)</p>
+    </div>
+    <div class="login">
+        <div class="log">
+
+            <h2 style="margin-top: -20px;" id="hea">
+
+            </h2>
+            <input id="username" maxlength="15" minlength="4" autocomplete="off" type="text" placeholder="username"
+                name="username">
+            <span id="error_message"></span>
+            <input maxlength="20" minlength="7" id="password" autocomplete="off" type="password" placeholder="password"
+                name="password">
+            <button id="show" type="button" onclick="show()"></button>
+            <button id="submit" onclick="submit()"> submit</button>
+            <a id="a" href="javascript:void(0)" onclick="login()"></a>
+
+
+
+
+        </div>
+    </div>
+    <nav>
+        <span id="logo">
+            <p onclick="trending()">BUGGYFLEX</p>
+        </span>
+        <input id="search" type="text" placeholder="Search movies" autocomplete="off">
+        <div class="search_box">
+            <div class="item">
+            </div>
+        </div>
+
+        <button id="search_but" onclick="search()"></button>
+        <button id="account" onclick="createaccount()"></button>
+    </nav>
+
+
+
+
+    <section class="content">
+
+        <div class="swipe">
+        </div>
+        <div class="banner">
+
+
+        </div>
+
+        <p id="content_Text">Trending This week</p>
+
+
+        <div class="video">
+
+
+
+
+        </div>
+        <div class="page">
+            <button onclick="backward()">
+                < </button>
+                    <button>
+                        <p id="page">1</p>
+                    </button>
+
+                    <button onclick=" forward()"> > </button>
+        </div>
+
+    </section>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        #error_message {
+            position: relative;
+            top: 5px;
+            margin-left: -30px;
+            font-size: 15px;
+            color: rgba(243, 26, 26, 0.781);
+
+
+        }
+
+        #submit {
+            position: relative;
+            top: 20px;
+            border: none;
+            background-color: rgb(245, 11, 62);
+            color: white;
+            padding: 10px;
+            width: 100px;
+            border-radius: 20px;
+            font-size: large;
+
+        }
+
+        a {
+            position: relative;
+            top: 60px;
+            color: rgb(226, 4, 255);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        body {
+            background-color: rgba(20, 19, 41, 0.973);
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        .login {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 50;
+        }
+
+        .log {
+
+            width: 300px;
+            height: 350px;
+            z-index: 20;
+            flex-direction: column;
+            display: flex !important;
+            border-radius: 20px;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(1, 0, 20);
+
+        }
+
+        #show {
+            position: absolute;
+            border: none;
+            width: 31px;
+            height: 30px;
+
+            background-color: transparent;
+            background-image: url(src/show.png);
+            color: white;
+            margin-left: 255px;
+
+        }
+
+        .log input {
+            height: 30px;
+            margin-top: 10px;
+            width: 68%;
+            padding-left: 10px;
+        }
+
+
+        .log input:focus {
+            outline: none;
+        }
+
+        .banner {
+            margin-top: 50px;
+            height: 100px;
+            display: none;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .page {
+            padding: 20px;
+            height: fit-content;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(20, 19, 41, 0.973);
+
+        }
+
+        .page button {
+            border: none;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            margin-left: 15px;
+            color: white;
+
+            background-color: rgba(16, 0, 41, 0.808);
+        }
+
+        #cut {
+
+            font-size: xx-large;
+            position: relative;
+            border: black;
+            top: -40px;
+            left: 28px;
+            margin-left: 100%;
+            bottom: 55px;
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            color: white;
+        }
+
+        .note {
+
+            position: fixed;
+            inset: 0;
+            /*display: flex;*/
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: auto;
+            background-color: rgb(13, 0, 32);
+            width: fit-content;
+            padding: 30px;
+            max-width: 250px;
+            height: 200px;
+            z-index: 10;
+        }
+
+
+
+        #logo p:hover {
+            cursor: pointer;
+
+        }
+
+
+        .detail_pic {
+
+            height: 400px;
+
+        }
+
+        .inf {
+            margin-top: 10px;
+
+            display: flex;
+            justify-content: center;
+            height: 20px;
+            overflow: hidden;
+            text-align: center;
+
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .search_box {
+            padding: 10px;
+            border-radius: 10px;
+            position: fixed;
+            overflow: scroll;
+            display: none;
+
+            top: 70px;
+            right: 95px;
+            width: 300px;
+            height: auto;
+            max-height: 300px;
+            background-color: rgba(16, 15, 36, 0.925);
+
+
+        }
+
+        .search_box:hover {
+            display: block;
+        }
+
+
+
+        .first {
+            display: flex;
+            justify-content: center;
+            background-color: rgba(16, 15, 36, 0.925);
+            padding: 10px;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+
+        }
+
+        .first p {
+            position: relative;
+            top: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+            height: 100%;
+
+
+
+
+
+        }
+
+
+
+
+
+        .item {
+
+            height: auto;
+            overflow-y: scroll;
+
+        }
+
+        .first {
+            margin: 8px;
+            height: 60px;
+        }
+
+        .search_box p {
+            margin-top: -40px;
+            margin-left: 30px;
+        }
+
+        .img_search {
+            height: 100%;
+            width: 180px;
+            font-size: small;
+            overflow: hidden;
+            background-image: url(src/that-time-i-got-reincarnated-as-a-slime-pictures-7ksbwoa7inx5qkvr.jpg);
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+
+        }
+
+        nav {
+            margin: 0;
+
+            position: fixed;
+            display: flex;
+            align-items: center;
+            border: transparent;
+            background-color: rgba(19, 17, 41, 0.904);
+            width: 100vw;
+            height: 70px;
+            display: flex;
+            z-index: 5;
+
+
+        }
+
+        .video_player {
+
+            width: 100%;
+            height: 600px;
+            display: flex;
+
+        }
+
+        iframe {
+            height: 98%;
+        }
+
+
+
+
+
+        .ep {
+
+            width: 40%;
+            height: 100%;
+        }
+
+
+
+
+        .detail {
+
+            width: 40%;
+        }
+
+        .detail_pic {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+
+            align-items: center;
+
+        }
+
+        .detail_pic img {
+            width: 200px;
+            height: 250px;
+            object-position: center;
+            object-fit: fill;
+
+
+        }
+
+        #name {
+
+            margin-top: 10px;
+            font-size: large;
+        }
+
+        #para {
+            padding: 10px;
+            font-size: small;
+
+
+
+
+            width: 100%;
+
+
+            text-align: center;
+
+        }
+
+
+
+
+
+        #logo {
+
+            width: auto;
+            margin-left: 150px;
+            font-weight: bold;
+            font-size: x-large;
+        }
+
+        #search {
+            border: none;
+
+            padding-left: 10px;
+            height: 40px;
+
+
+            width: 300px;
+            border-radius: 20px;
+            margin-left: auto;
+
+            outline: none;
+        }
+
+        #search_but {
+            border: none;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            margin-right: 15px;
+            background-image: url(src/search.png);
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+
+
+
+
+
+        }
+
+
+        input:focus {
+            outline: none;
+
+
+        }
+
+        input:focus+.search_box {
+            display: block;
+        }
+
+
+        #account {
+            width: 35px;
+            height: 35px;
+            margin-right: 100px;
+            background-image: url(src/add-user.png);
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        .content {
+
+            position: relative;
+
+            width: 100vw;
+            height: auto;
+
+        }
+
+        .swipe {
+
+
+            position: relative;
+            top: 65px;
+
+            height: fit-content;
+            display: flex;
+            flex-direction: row;
+            overflow: hidden;
+        }
+
+        .spotlight {
+
+
+
+            position: relative;
+            height: fit-content;
+            flex-shrink: 0;
+            width: 100vw;
+            display: flex;
+            animation: move infinite ease 40s;
+
+
+        }
+
+        h3 {
+            margin-bottom: 20px;
+
+        }
+
+
+        .info {
+
+
+            width: 80%;
+
+
+            text-align: center;
+            padding-top: 300px;
+            height: 90%;
+
+
+        }
+
+        .info h3 {
+            font-size: 25px;
+        }
+
+        .info p {
+            margin-top: -15px;
+            margin-left: auto;
+            margin-right: auto;
+            border: none;
+            width: 90%;
+            font-size: 18px;
+        }
+
+        .info button {
+            margin-top: 20px;
+            border: none;
+            width: 70px;
+            height: 35px;
+            border-radius: 50px;
+            background-color: rgba(235, 14, 69, 0.897);
+            color: white;
+            margin-left: 20px;
+        }
+
+        .info button:hover {
+            background-color: rgb(255, 0, 170);
+        }
+
+        .pic {
+
+
+            width: 100%;
+            height: 550px;
+            background-image: url(src/that-time-i-got-reincarnated-as-a-slime-pictures-7ksbwoa7inx5qkvr.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        @keyframes move {
+            0% {
+                right: 0;
+            }
+
+            10% {
+                right: 0;
+            }
+
+            20% {
+                right: 100vw;
+            }
+
+            30% {
+                right: 100vw;
+            }
+
+            40% {
+                right: 200vw;
+            }
+
+            50% {
+                right: 200vw;
+            }
+
+            60% {
+                right: 300vw;
+            }
+
+            70% {
+                right: 300vw;
+            }
+
+            80% {
+                right: 400vw;
+            }
+
+            90% {
+                right: 400vw;
+            }
+
+            100% {
+                right: 0;
+
+            }
+
+
+
+
+
+
+
+        }
+
+        .video {
+
+            display: flex;
+
+
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px;
+            width: fit-content;
+            justify-content: center;
+
+            height: auto;
+
+            padding-top: 100px;
+            background-color: rgba(20, 19, 41, 0.973);
+        }
+
+        .box {
+
+            margin: 10px;
+            margin-bottom: 20px;
+
+
+            height: 250px;
+            width: 200px;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        .im {
+
+            width: 100%;
+            height: 100%;
+
+        }
+
+
+
+        p {
+
+            text-align: center;
+        }
+
+        #content_Text {
+            position: relative;
+            top: 80px;
+            font-size: 40px;
+            font-weight: bold;
+            margin-left: 50px;
+            text-align: start;
+
+        }
+
+        .box:hover {
+            cursor: pointer;
+        }
+
+        @media (width <1425px) {
+            .banner {
+                margin-top: 70px;
+            }
+
+            .video_player {
+                height: 500px;
+            }
+
+
+
+
+            .info {
+                padding-top: 290px;
+
+                position: absolute;
+                background-color: rgba(7, 4, 43, 0.377);
+                width: 100%;
+
+
+            }
+
+            .info h3 {
+                margin-top: 80px;
+
+            }
+
+            .info p {
+                font-size: 18px;
+            }
+
+
+
+        }
+
+        @media (width<=1262px) {
+            .video_player {
+                height: 480px;
+            }
+
+
+            .ep {
+                display: none;
+            }
+
+        }
+
+        @media (Width <1000px) {
+
+
+            .video_player {
+                display: flex;
+                flex-direction: column;
+
+            }
+
+            .detail {
+                display: none;
+                position: relative;
+                top: 100px;
+                height: 400px;
+
+
+
+            }
+
+
+
+
+        }
+
+
+
+        @media (width <959px) {
+            .banner {
+                margin-top: 80px;
+            }
+
+            .video_player {
+                height: 460px;
+            }
+
+            #search {
+
+                margin-right: 20px;
+                width: 300px;
+                height: 40px;
+            }
+
+            .search_box {
+                right: 10px;
+            }
+
+            #logo {
+                margin-left: 20px;
+            }
+
+            .swipe {
+                height: 480px;
+            }
+
+            .info p {
+
+                font-size: 15px;
+
+            }
+
+            .info h3 {
+                margin-top: -10px;
+
+
+            }
+
+
+
+        }
+
+        @media (width <750px) {
+            .video_player {
+                height: 330px;
+            }
+
+            .swipe {
+                height: 350px;
+
+            }
+
+            .pic {
+                height: 350px;
+            }
+
+            .info p {
+
+                height: 40px;
+                overflow: hidden;
+
+                font-size: 15px;
+                margin-bottom: -10px;
+
+            }
+
+            .info h3 {
+                margin-top: -75px;
+
+
+
+
+            }
+
+            .box {
+
+                position: relative;
+
+
+
+
+
+
+                width: 200px;
+                height: 250px;
+                margin-bottom: 100px;
+
+
+            }
+
+            .box p {
+
+                width: 170px;
+            }
+
+            .video {
+                padding: 0;
+                gap: 0;
+                padding-top: 100px;
+
+                display: flex;
+                justify-content: center;
+            }
+
+        }
+
+        @media (width <550px) {
+            .video_player {
+                height: 240px;
+            }
+
+            #search {
+                margin-top: 10px;
+                margin-right: 10px;
+                width: 200px;
+                height: 30px;
+            }
+
+            .search_box {
+                top: 60px;
+                width: 200px;
+                font-size: 15px;
+
+            }
+
+            .swipe {
+
+                margin-top: -10px;
+
+
+                height: 250px;
+            }
+
+
+
+            .video {
+                border: none;
+
+
+                width: fit-content;
+
+            }
+
+            .box {
+                width: 180px;
+                height: 200px;
+            }
+
+            #content_Text {
+                font-size: 25px;
+
+            }
+
+            /*
+
+    .box {
+
+        width: 20px;
+        margin-right: 130px;
+        margin-bottom: 120px;
+        height: 100px;
+        background-size: contain;
+    }
+
+    .im {
+        border: 1px solid none;
+        height: 205px;
+        width: 180px;
+
+
+        background-position: center;
+        background-size: contain !important;
+        background-repeat: no-repeat;
+    }
+
+*/
+
+            .info h3 {
+                margin-top: -175px;
+
+
+
+
+            }
+
+
+
+
+        }
+
+        @media (width <=399px) {
+            #logo {
+                margin-left: 10px;
+                margin-top: 5px;
+                font-size: large;
+            }
+
+            #search {
+                margin-top: 4px;
+                margin-right: 10px;
+                width: 180px;
+                height: 30px;
+            }
+
+            .search_box {
+                right: 0;
+
+                width: 180px;
+
+            }
+
+            .box {
+                width: 100px;
+                height: 120px;
+            }
+
+        }
+    </style>
+    <script>
+        let swipe = document.getElementsByClassName('swipe')[0]
+        let show_password = document.getElementById('show')
+        let login_class = document.getElementsByClassName("login")[0]
+        let isclicked = false
+        let video = document.getElementsByClassName('video')[0]
+        let search_box = document.getElementsByClassName('search_box')[0]
+        let fin = document.getElementById('search')
+        let item = document.getElementsByClassName('item')[0]
+        let but = video.querySelectorAll('button')
+        let error_message = document.getElementById("error_message")
+        let note = document.getElementsByClassName('note')[0]
+        let account = document.getElementById('account')
+      
+        let logging = false
+
+        function createaccount() {
+            let content = document.getElementsByClassName("video")[0]
+            document.getElementById('hea').innerText = "Register"
+            document.getElementById('a').innerText = "already have a account"
+
+            window.onscroll = () => {
+                window.scrollTo(0, 0)
+            }
+
+
+
+
+
+            login_class.style.display = "flex"
+
+
+        }
+        if (localStorage.getItem('islogin')) {
+            let account = document.getElementById('account')
+            account.style.borderRadius = '20px'
+            account.style.backgroundImage = 'url(src/icon.jpeg)'
+            account.style.backgroundSize = 'contain'
+            account.onclick = 'accountinfo'
+            console.log('user is login')
+
+            //    alert('login')
+
+        }
+        function accountinfo() {
+
+
+        }
+
+        function login() {
+
+
+
+            if (logging) {
+                document.getElementById('hea').innerText = "Register"
+                document.getElementById('a').innerText = "already have a account"
+                logging = false
+            }
+            else {
+                let name = document.getElementById('username').value.trim()
+                let password = document.getElementById('password').value.trim()
+                document.getElementById('hea').innerText = "Login"
+                document.getElementById('a').innerText = "Create new account"
+                logging = true
+            }
+
+        }
+        function submit() {
+            if (!logging) {
+                console.log('chesack')
+                let name = document.getElementById('username').value.trim()
+                let password = document.getElementById('password').value.trim()
+                if (name.length > 3 || password.length > 3) {
+                    name = btoa(document.getElementById('username').value.trim())
+                    password = btoa(document.getElementById('password').value.trim())
+                    console.log('request made')
+                    fetch('http://localhost:8000/already', {
+                        "method": "post",
+                        "headers": { "Content-Type": "application/json" },
+                        "body": JSON.stringify({ name, password })
+                    })
+                        .then(res => {
+                            console.log(res.status)
+                            if (res.status === 501) {
+                                error_message.innerText = 'user name already taken'
+                                document.getElementById('show').style.marginTop = '18px'
+                            }
+                            if (res.status === 200) {
+                                console.log('send another req')
+                                fetch('http://localhost:8000/users', {
+                                    "method": "post",
+                                    "headers": { "Content-Type": "application/json" },
+                                    "body": JSON.stringify({ name, password })
+                                })
+                                    .then(res => res.json())
+                                    .then(data => {
+                                        localStorage.setItem('islogin', `${name}`)
+                                    })
+
+                                    .catch(er => {
+                                        document.getElementById('show').style.marginTop = '18px'
+                                        error_message.innerText = "Internal error"
+                                        document.getElementById('show').style.marginTop = '18px'
+
+                                    })
+                            }
+
+                        })
+                        .catch(er => {
+                            error_message.innerText = "Internal error"
+                            document.getElementById('show').style.marginTop = '18px'
+
+                        })
+
+
+                }
+                else {
+                    error_message.innerText = "input so short"
+                    document.getElementById('show').style.marginTop = '18px'
+                }
+
+            }
+            else {
+                name = btoa(document.getElementById('username').value.trim())
+                password = btoa(document.getElementById('password').value.trim())
+                console.log('request made')
+                fetch('http://localhost:8000/already', {
+                    "method": "post",
+                    "headers": { "Content-Type": "application/json" },
+                    "body": JSON.stringify({ name, password })
+                })
+                    .then(res => {
+                        if (res.status === 500) {
+                            //  error_message.innerText = "password matched"
+                            location.reload()
+                            localStorage.setItem('islogin', `${name}`)
+
+                        }
+                        if (res.status === 501) {
+                            error_message.innerText = "password not matched"
+                            document.getElementById('show').style.marginTop = '18px'
+                            console.log(name, password)
+
+                        }
+                        if (res.status === 200) {
+                            error_message.innerText = "user not found"
+                            document.getElementById('show').style.marginTop = '18px'
+                        }
+
+
+                    })
+                    .catch((e) => {
+                        error_message.innerText = "Server Down"
+                        document.getElementById('show').style.marginTop = '18px'
+
+
+                    })
+
+
+            }
+
+            //  console.log(name, password)
+
+
+        }
+        function show() {
+            let password = document.getElementById("password")
+            if (!isclicked) {
+                password.type = "text"
+
+                show_password.style.backgroundImage = "url(src/hide.png)"
+                isclicked = true
+            }
+            else {
+                show_password.style.backgroundImage = "url(src/show.png)"
+                password.type = "password"
+
+                isclicked = false
+            }
+
+
+
+
+            //    alert('s')
+        }
+
+        /*
+                function send(method, subfix, others) {
+                    //  alert('da')
+                    if (others === undefined) {
+                        others = undefined
+        
+                    }
+                    fetch('http://localhost:8000/movie', {
+                        "method": "post",
+                        "headers": { "Content-Type": "application/json" },
+                        "body": JSON.stringify({ method, subfix, others })
+                    })
+                        //   .then(d => d.json())
+                        .then(data => {
+                            console.log(data)
+                        })
+        
+                }
+        
+        */
+
+
+
+        function cut() {
+            note.style.display = "none";
+
+        }
+
+
+        function search() {
+        }
+        fin.addEventListener("input", (data) => {
+            console.log('s')
+            //send("search", "/search/movie?query=", fin.value.trim())
+
+
+            search()
+
+        })
+        function search(params) { // function to search
+            let query = fin.value.trim()
+            let url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${apikey}`
+            fetch(url)
+                .then(res => res.json())
+                .then(a => {
+
+
+                    let i = 0
+                    if (a.results.length >= 20) {
+                        item.innerHTML = ' '
+                        while (i != 20) {
+
+                            item.innerHTML += `<div class="first" data-id="find"  id="${a.results[i].id}">
+
+
+
+                    <div class="img_search" data-id="find"   id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ; >
+
+                    </div>
+                    <p  data-id="find" id="${a.results[i].id}" >${a.results[i].title}</p>
+                    
+                </div>`
+                            i++
+
+
+                        }
+                        //        console.log(a.results)
+
+                    }
+                    else {
+                        while (i < a.results.length) {
+                            item.innerHTML += `<div class="first" id="${a.results[i].id}"   >
+
+
+
+                    <div class="img_search" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ; >
+
+                    </div>
+                    <p>${a.results[i].title}</p>
+                    
+                </div>`
+                            i++
+                            //  console.log('less', i)
+
+                        }
+                    }
+
+                })
+
+        }
+
+
+
+
+        let onpage = 1
+
+        async function get_page(page) { // function to chage page 
+            //  let temp = page + 5
+            // console.log(temp)
+
+            const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en&api_key=${apikey}&page=${page}`)
+            // console.log('page', page)
+            onpage = page
+            //   console.log('onpage', onpage)
+            const data = await res.json()
+            data.results.forEach(element => {
+
+                video.innerHTML += `
+                <div class="box" >
+                <div class="im" id="${element.id}">
+                    <img src="https://image.tmdb.org/t/p/w500${element.poster_path}" id="${element.id}"> </img> 
+                    </div>
+                <div class="inf">
+                <p>${element.title}</p>
+                </div>
+                </div>
+                `
+
+
+
+
+
+
+
+                //   content.push(element)
+
+            });
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        document.getElementById('page').innerText = onpage
+        get_page(onpage)
+        function forward() {
+            video.innerHTML = ` `
+            onpage++
+            document.getElementById('page').innerText = onpage
+            get_page(onpage)
+
+        }
+        function backward() {
+            video.innerHTML = ` `
+            onpage--
+            document.getElementById('page').innerText = onpage
+            get_page(onpage)
+
+        }
+        /* This code is to increase the item per page contain from 20 to 100 it's facing some erros so for now it's on hold
+               for (let i = onpage; i < onpage + 5; i++) { // This function is to increase the content per page by default a page contain 20 item by using a for loop i can loop the same function 5 times meaning 20*5 more content per page 
+                   //    get_page(i);
+       
+               }
+       
+       
+       
+       
+       
+               let click = 1
+       
+       
+       
+       
+       // console.log(onpage)
+
+       function back() {
+           console.log('click', click)
+           video.innerHTML = ` `
+           alert('back')
+           // console.log('wwas', c)
+           //onpage--
+           //  console.log('backdwaw',onpage)
+           if (!onpage - 5 * 2 < 10) {
+               let te = onpage - 5 * 2
+               for (let i = onpage; i != onpage - 5; i--) {
+                   te++
+
+                   //console.log('temp', i)
+                   console.log("back ", te)
+
+                   get_page(te)
+
+
+
+               }
+           }
+           else {
+               console.log('wa')
+           }
+
+           //   c--
+
+
+
+
+
+
+
+       }
+
+        // send(get_page)
+        function forward() {
+            click++
+            console.log('click', click)
+            alert('forward')
+            video.innerHTML = ` `
+
+            onpage++
+            for (let i = onpage; i < onpage + 5; i++) {
+                //   console.log('forward', i)
+
+                get_page(i)
+            }
+
+
+
+
+        }
+
+
+*/
+
+
+
+
+
+        // function to get the trending movies
+        function trending() {
+            sessionStorage.clear()
+            swipe.innerHTML = ` `
+            fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en&api_key=${apikey}`)
+                .then(data => data.json())
+                .then(res => {
+                    for (let i = 0; i != 5; i++) {
+
+                        swipe.innerHTML += `
+        <div class="spotlight">
+        <div class="info">
+            <h3>${res.results[i].title}</h3>
+            <p>${res.results[i].overview}</p>
+            <button id="${res.results[i].id}">watch</button><button>Details</button>
+        </div>
+        <div class="pic"  style="background-image: url( https://image.tmdb.org/t/p/w500${res.results[i].backdrop_path}         );">
+
+        </div>
+
+    </div>
+        `
+
+                    }
+
+
+
+                })
+
+        }
+        trending()
+        //  send('trending', '/trending/movie/week?language=en')
+
+
+
+        document.addEventListener('click', (e) => {
+            note.style.display = "none";
+            if (isNaN(parseInt(e.target.id))) {
+
+
+            } else {
+
+                console.log(e.target.id)
+                sessionStorage.setItem("play", e.target.id)
+
+
+                play(e.target.id)
+                // search_box.style.display="none"
+
+
+
+
+
+
+            }
+
+
+
+
+
+
+
+
+        })
+        function play(id) {
+            //    send("getfromid", '/movie/')
+            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
+                .then(e => e.json())
+                .then(res => {
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+
+                    //    console.log(res)
+                    swipe.innerHTML = `<div class="video_player">
+         <div class="ep"></div>
+     
+         <iframe id="if" src=""" frameborder="0" height="100%" width="100%" allowfullscreen ></iframe>
+         <div class="detail">
+             <div class="detail_pic">
+                 <img src="https://image.tmdb.org/t/p/w500${res.backdrop_path}"></img>
+              <p id="name">${res.title}</p>
+                 <p id="para">${res.overview}</p>
+                 
+     
+             </div>
+     
+     
+         </div>
+       
+     </div> `
+                    console.log(id)
+                    let i = document.getElementsByTagName('iframe')[0]
+                    i.src = `https://vidsrc.xyz/embed/movie/${id}`
+
+
+
+                })
+
+
+        }
+
+        // console.log(sessionStorage.getItem('play'))
+        if (sessionStorage.getItem("play")) {
+            //   alert('found')
+            fetch(`https://api.themoviedb.org/3/movie/${sessionStorage.getItem('play')}?api_key=${apikey}`)
+                .then(e => e.json())
+                .then(res => {
+                    window.scrollTo({ top: 0, behavior: "smooth" })
+
+                    //    console.log(res)
+                    swipe.innerHTML = `<div class="video_player">
+         <div class="ep"></div>
+     
+         <iframe id="if" src=""" frameborder="0" height="100%" width="100%" allowfullscreen ></iframe>
+         <div class="detail">
+             <div class="detail_pic">
+                 <img src="https://image.tmdb.org/t/p/w500${res.backdrop_path}"></img>
+              <p id="name">${res.title}</p>
+                 <p id="para">${res.overview}</p>
+                 
+     
+             </div>
+     
+     
+         </div>
+       
+     </div> `
+                    console.log(sessionStorage.getItem('play'))
+                    let i = document.getElementsByTagName('iframe')[0]
+                    i.src = `https://vidsrc.xyz/embed/movie/${sessionStorage.getItem('play')}`
+
+
+
+
+
+                })
+
+        }
+        if (!sessionStorage.getItem('play')) {
+            trending()
+
+        }
+        else {
+            note.style.display = "none";
+        }
+
+
+
+
+
+
+    </script>
+
+</body>
+
+</html>
