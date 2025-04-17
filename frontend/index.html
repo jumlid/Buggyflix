@@ -54,6 +54,15 @@
 
         <button id="search_but" onclick="search()"></button>
         <button id="account" onclick="createaccount()"></button>
+        <div class="profile" id="profile">
+            <div class="p_icon" id="profile"><button></button></div>
+            <p class="p_name" style="font-size: 15px;" id="profile">user name</p>
+            <p style="font-size: 15px;" class="date" id="profile"> </p>
+            </p>
+
+
+
+        </div>
     </nav>
 
 
@@ -92,7 +101,37 @@
         * {
             margin: 0;
             padding: 0;
+        }
 
+        .profile {
+            position: fixed;
+            display: none;
+            align-items: center;
+            flex-direction: column;
+            width: 200px;
+            top: 71px;
+            height: 180px;
+            right: 90px;
+            border-radius: 15px;
+            background-color: rgba(18, 18, 37, 0.829);
+
+            opacity: 1;
+
+        }
+
+        .p_icon {
+            margin-top: 20px;
+            width: 45px;
+            height: 45px;
+            border-radius: 40px;
+            background-image: url(src/icon.jpeg);
+            background-size: contain;
+            background-position: center;
+        }
+
+        .p_name {
+            margin-top: 30px;
+            margin-bottom: 5px;
         }
 
         #error_message {
@@ -101,7 +140,6 @@
             margin-left: -30px;
             font-size: 15px;
             color: rgba(243, 26, 26, 0.781);
-
 
         }
 
@@ -463,15 +501,11 @@
 
         #search {
             border: none;
-
             padding-left: 10px;
             height: 40px;
-
-
             width: 300px;
             border-radius: 20px;
             margin-left: auto;
-
             outline: none;
         }
 
@@ -508,7 +542,7 @@
         #account {
             width: 35px;
             height: 35px;
-            margin-right: 100px;
+            margin-right: 200px;
             background-image: url(src/add-user.png);
             background-color: transparent;
             background-repeat: no-repeat;
@@ -1032,10 +1066,11 @@
         let error_message = document.getElementById("error_message")
         let note = document.getElementsByClassName('note')[0]
         let account = document.getElementById('account')
-      
+        
         let logging = false
 
         function createaccount() {
+
             let content = document.getElementsByClassName("video")[0]
             document.getElementById('hea').innerText = "Register"
             document.getElementById('a').innerText = "already have a account"
@@ -1057,14 +1092,29 @@
             account.style.borderRadius = '20px'
             account.style.backgroundImage = 'url(src/icon.jpeg)'
             account.style.backgroundSize = 'contain'
-            account.onclick = 'accountinfo'
+            account.onclick = accountinfo
+
+            fetch('http://localhost:8000/users')
+                .then(res => res.json())
+                .then(data => {
+                    let id = localStorage.getItem('islogin')
+                    console.log(data[id].name)
+                    console.log(data[id].Created_on)
+                    document.getElementsByClassName('p_name')[0].innerText = atob(data[id].name)
+                    document.getElementsByClassName('date')[0].innerText = `Created on ${data[id].Created_on}`
+
+
+                })
             console.log('user is login')
 
             //    alert('login')
 
         }
         function accountinfo() {
-
+            //  alert('w')
+            let pro = document.getElementsByClassName('profile')[0]
+            pro.style.display = 'flex'
+            pro.style.opacity = 1
 
         }
 
@@ -1232,8 +1282,6 @@
             note.style.display = "none";
 
         }
-
-
         function search() {
         }
         fin.addEventListener("input", (data) => {
@@ -1250,8 +1298,6 @@
             fetch(url)
                 .then(res => res.json())
                 .then(a => {
-
-
                     let i = 0
                     if (a.results.length >= 20) {
                         item.innerHTML = ' '
@@ -1477,7 +1523,14 @@
 
 
         document.addEventListener('click', (e) => {
-            note.style.display = "none";
+            if (e.target.id != 'profile' && e.target.id != 'account') {
+                note.style.display = "none";
+                let pro = document.getElementsByClassName('profile')[0]
+                pro.style.display = 'none'
+                pro.style.opacity = 0
+            }
+
+
             if (isNaN(parseInt(e.target.id))) {
 
 

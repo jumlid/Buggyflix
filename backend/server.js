@@ -9,17 +9,19 @@ a.use(express.json())
 //let data = JSON.parse(fs.readFileSync('./data.json', 'utf8'))
 let users;
 let check;
-a.get('/users', (req, res) => {
-
-
-
-    res.json(users)
-    return res.json({ "status": "success" })
-})
 users = fs.readFileSync('./users.json', 'utf8')
+a.get('/users', (req, res) => {
+    users = fs.readFileSync('./users.json', 'utf8')
+
+
+    users = JSON.parse(users)
+    return res.json(users)
+
+})
+
 
 a.post('/already', (req, res) => {
-
+    users = fs.readFileSync('./users.json', 'utf8')
     console.log('check')
     check = JSON.parse(users)
     if (req.body.name in check) {
@@ -48,13 +50,16 @@ a.post('/already', (req, res) => {
 
     }
 
-    return res.json({ "status": "work" })
+    res.json({ "status": "work" })
 })
 
 a.post('/users', (req, res) => {
+    users = fs.readFileSync('./users.json', 'utf8')
     console.log('store')
+    let date = new Date()
+
     users = JSON.parse(users)
-    users[req.body.name] = { "password": req.body.password }
+    users[req.body.name] = { "name": req.body.name, "password": req.body.password, "Created_on": `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}` }
     users = JSON.stringify(users)
     console.log(typeof (users))
     fs.writeFileSync('./users.json', users)
@@ -62,7 +67,7 @@ a.post('/users', (req, res) => {
 
 
 
-    return res.json({ "status": "success" })
+    res.json({ "status": "success" })
 })
 
 
