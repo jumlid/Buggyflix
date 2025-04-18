@@ -285,7 +285,7 @@
 
             position: fixed;
             inset: 0;
-            /*display: flex;*/
+            display: flex;
             display: none;
             justify-content: center;
             align-items: center;
@@ -336,7 +336,7 @@
             overflow: scroll;
             display: none;
             top: 70px;
-            right: 95px;
+            right: 275px;
             width: 300px;
             height: auto;
             max-height: 300px;
@@ -414,7 +414,7 @@
 
         nav {
             border: 1px solid red;
-            margin: 0;
+
 
 
             position: fixed;
@@ -578,7 +578,7 @@
 
 
             position: relative;
-            top: 50px;
+            top: 70px;
             height: fit-content;
             display: flex;
             flex-direction: row;
@@ -872,7 +872,7 @@
             }
 
             .search_box {
-                right: 10px;
+                right: 120px;
             }
 
             #logo {
@@ -1252,14 +1252,14 @@
                 .then(res => res.json())
                 .then(data => {
                     let id = localStorage.getItem('islogin')
-                  //  console.log(data[id].name)
-                 //   console.log(data[id].Created_on)
+                    //  console.log(data[id].name)
+                    //   console.log(data[id].Created_on)
                     document.getElementsByClassName('p_name')[0].innerText = atob(data[id].name)
                     document.getElementsByClassName('date')[0].innerText = `Created on ${data[id].Created_on}`
 
 
                 })
-          //  console.log('user is login')
+            //  console.log('user is login')
 
             //    alert('login')
 
@@ -1292,26 +1292,26 @@
         }
         function submit() {
             if (!logging) {
-           //     console.log('chesack')
+                //     console.log('chesack')
                 let name = document.getElementById('username').value.trim()
                 let password = document.getElementById('password').value.trim()
                 if (name.length > 3 || password.length > 3) {
                     name = btoa(document.getElementById('username').value.trim())
                     password = btoa(document.getElementById('password').value.trim())
-                //    console.log('request made')
+                    //    console.log('request made')
                     fetch('http://localhost:8000/already', {
                         "method": "post",
                         "headers": { "Content-Type": "application/json" },
                         "body": JSON.stringify({ name, password })
                     })
                         .then(res => {
-                          //  console.log(res.status)
+                            //  console.log(res.status)
                             if (res.status === 501) {
                                 error_message.innerText = 'user name already taken'
                                 document.getElementById('show').style.marginTop = '18px'
                             }
                             if (res.status === 200) {
-                             //   console.log('send another req')
+                                //   console.log('send another req')
                                 fetch('http://localhost:8000/users', {
                                     "method": "post",
                                     "headers": { "Content-Type": "application/json" },
@@ -1348,7 +1348,7 @@
             else {
                 name = btoa(document.getElementById('username').value.trim())
                 password = btoa(document.getElementById('password').value.trim())
-            //    console.log('request made')
+                //    console.log('request made')
                 fetch('http://localhost:8000/already', {
                     "method": "post",
                     "headers": { "Content-Type": "application/json" },
@@ -1364,7 +1364,7 @@
                         if (res.status === 501) {
                             error_message.innerText = "password not matched"
                             document.getElementById('show').style.marginTop = '18px'
-                         //   console.log(name, password)
+                            //   console.log(name, password)
 
                         }
                         if (res.status === 200) {
@@ -1430,7 +1430,19 @@
         
         */
         //This These are just temp solution i'll fix make it 
+        window.addEventListener('resize', (e) => {
+            if (window.innerWidth <= 585) {
+
+                document.getElementById('search_but').onclick = se
+
+
+
+
+
+            }
+        })
         if (window.innerWidth <= 585) {
+
             document.getElementById('search_but').onclick = se
 
 
@@ -1443,7 +1455,8 @@
             sear()
         })
         function se() {
-         //   console.log('changed flex')
+            //   console.log('changed flex')
+            window.scrollTo({ top: 0, behavior: "smooth" })
             document.getElementsByClassName('sear')[0].style.display = 'flex'
             //  document.getElementsByClassName('sear')[0].style.transform='translateX(200)'
 
@@ -1763,7 +1776,7 @@
 
             } else {
                 document.getElementsByClassName('sear')[0].style.display = 'none'
-              
+
                 sessionStorage.setItem("play", e.target.id)
 
 
