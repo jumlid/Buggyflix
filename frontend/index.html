@@ -1220,7 +1220,7 @@
         let error_message = document.getElementById("error_message")
         let note = document.getElementsByClassName('note')[0]
         let account = document.getElementById('account')
-        let apikey = '5eb9bfdc3b51661510ad81b5664d2404' // i know what i did 🤡 enjoy
+      
         let logging = false
 
         function createaccount() {
@@ -1248,7 +1248,7 @@
             account.style.backgroundSize = 'contain'
             account.onclick = accountinfo
 
-            fetch('https://buggyflixserver-production.up.railway.app/users')
+            fetch('')
                 .then(res => res.json())
                 .then(data => {
                     let id = localStorage.getItem('islogin')
@@ -1299,7 +1299,7 @@
                     name = btoa(document.getElementById('username').value.trim())
                     password = btoa(document.getElementById('password').value.trim())
                     //    console.log('request made')
-                    fetch('https://buggyflixserver-production.up.railway.app/already', {
+                    fetch('', {
                         "method": "post",
                         "headers": { "Content-Type": "application/json" },
                         "body": JSON.stringify({ name, password })
@@ -1312,7 +1312,7 @@
                             }
                             if (res.status === 200) {
                                 //   console.log('send another req')
-                                fetch('https://buggyflixserver-production.up.railway.app/users', {
+                                fetch('', {
                                     "method": "post",
                                     "headers": { "Content-Type": "application/json" },
                                     "body": JSON.stringify({ name, password })
@@ -1350,7 +1350,7 @@
                 name = btoa(document.getElementById('username').value.trim())
                 password = btoa(document.getElementById('password').value.trim())
                 //    console.log('request made')
-                fetch('https://buggyflixserver-production.up.railway.app/already', {
+                fetch('', {
                     "method": "post",
                     "headers": { "Content-Type": "application/json" },
                     "body": JSON.stringify({ name, password })
