@@ -491,12 +491,14 @@
         #name {
 
             margin-top: 10px;
-            font-size: large;
+
+            font-size: 20px;
+            font-weight: bold;
         }
 
         #para {
             padding: 10px;
-            font-size: small;
+            font-size: 16px;
 
 
 
@@ -636,6 +638,7 @@
         }
 
         .info p {
+          
             margin-top: -15px;
             margin-left: auto;
             margin-right: auto;
@@ -657,6 +660,11 @@
 
         .info button:hover {
             background-color: rgb(255, 0, 170);
+        }
+
+        .inf p {
+            font-size: 15px;
+            font-weight: bold;
         }
 
         .pic {
@@ -991,8 +999,16 @@
 
             }
 
+            #account {
+                margin-right: 25px;
+            }
+
             #search {
                 display: none;
+            }
+
+            #search_but {
+                margin-right: 30px;
             }
 
             .sear {
@@ -1241,9 +1257,11 @@
         let error_message = document.getElementById("error_message")
         let note = document.getElementsByClassName('note')[0]
         let account = document.getElementById('account')
-        let apikey = '5eb9bfdc3b51661510ad81b5664d2404' // i know what i did 🤡 enjoy it's a ppublic API key ._.
+        let apikey = '5eb9bfdc3b51661510ad81b5664d2404' // i know what i did 🤡 enjoy
         let logging = false
 
+
+        // This function is to create new users
         function createaccount() {
 
             let content = document.getElementsByClassName("video")[0]
@@ -1260,6 +1278,7 @@
 
 
         }
+        // If users has a data name is login in localstorage it will automatically login the users 
         if (localStorage.getItem('islogin')) {
             let account = document.getElementById('account')
             account.style.borderRadius = '20px'
@@ -1283,6 +1302,8 @@
             //    alert('login')
 
         }
+
+        // This function is to display data like date of join and user name on site
         function accountinfo() {
             //  alert('w')
             let pro = document.getElementsByClassName('profile')[0]
@@ -1290,7 +1311,7 @@
             pro.style.opacity = 1
 
         }
-
+        // This function  is to login old users  
         function login() {
 
 
@@ -1309,6 +1330,7 @@
             }
 
         }
+        //Submit the data to the database
         function submit() {
             if (document.getElementById('username').value != '' && document.getElementById('password').value != '') {
                 if (!logging) {
@@ -1419,6 +1441,8 @@
 
 
         }
+
+        //This function is for to show the password
         function show() {
             let password = document.getElementById("password")
             if (!isclicked) {
@@ -1460,6 +1484,7 @@
         
         */
         //This These are just temp solution i'll fix make it 
+        //This function do the same stuff as mention below by if else but This function will triguere when screen is reduce lmao
         window.addEventListener('resize', (e) => {
             if (window.innerWidth <= 585) {
 
@@ -1470,7 +1495,12 @@
 
 
             }
+            else {
+                //      document.getElementById('search_but').onclick = search()
+                document.getElementsByClassName('sear')[0].style.display = 'none'
+            }
         })
+        // This function is to chagne the function of the search bar when the screen width is <=585 That function will agin display the search bar when it's clicked
         if (window.innerWidth <= 585) {
 
             document.getElementById('search_but').onclick = se
@@ -1479,23 +1509,27 @@
 
 
 
-        }
+        }// This is to get to start the search bar if user  enter a intput
         let sea = document.getElementById('sear_m')
         sea.addEventListener('input', () => {
+
             sear()
+
         })
+
+        // This  function here is for the UI when the search bar is clicked on smaller screen ot will scrool to the top of the screen and open the  display the search bar
         function se() {
             //   console.log('changed flex')
             window.scrollTo({ top: 0, behavior: "smooth" })
             document.getElementsByClassName('sear')[0].style.display = 'flex'
             document.getElementById('sear_m').style.display = 'block'
             document.getElementById('sear_m').focus()
-          
+
 
             //  document.getElementsByClassName('sear')[0].style.transform='translateX(200)'
 
         }
-        function sear() {
+        function sear() { // This function too is for search but for smaller div i'll remove this in near future when i'll make my code more redable for now if it work it stay
             let query = sea.value.trim()
             fin.value = ''
             let url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${apikey}`
@@ -1539,7 +1573,7 @@
         }
 
 
-        function cut() {
+        function cut() { // This fucntion will remove the note 
             note.style.display = "none";
 
         }
@@ -1784,7 +1818,7 @@
         //  send('trending', '/trending/movie/week?language=en')
 
 
-
+        // This function control most of the display of the site 
         document.addEventListener('click', (e) => {
             if (e.target.className === 'login') {
                 document.getElementsByClassName('login')[0].style.display = 'none'
@@ -1850,7 +1884,7 @@
          <iframe id="if" src=""" frameborder="0" height="100%" width="100%" allowfullscreen ></iframe>
          <div class="detail">
              <div class="detail_pic">
-                 <img src="https://image.tmdb.org/t/p/w500${res.backdrop_path}"></img>
+                 <img src="https://image.tmdb.org/t/p/w500${res.poster_path}"></img>
               <p id="name">${res.title}</p>
                  <p id="para">${res.overview}</p>
                  
