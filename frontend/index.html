@@ -117,6 +117,8 @@
             outline: none;
         }
 
+
+
         .profile {
             position: fixed;
             display: none;
@@ -326,13 +328,10 @@
         }
 
 
-        .detail_pic {
 
-            height: 400px;
-
-        }
 
         .inf {
+
             margin-top: 10px;
             display: flex;
             justify-content: center;
@@ -448,6 +447,7 @@
 
         .video_player {
 
+
             width: 100%;
             height: 600px;
             display: flex;
@@ -476,16 +476,13 @@
             width: 40%;
         }
 
-        .detail_pic {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
 
-            align-items: center;
 
-        }
-
-        .detail_pic img {
+        .detail img {
+            display: block;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
             width: 200px;
             height: 250px;
             object-position: center;
@@ -497,12 +494,12 @@
         #name {
 
             margin-top: 10px;
-
             font-size: 20px;
             font-weight: bold;
         }
 
         #para {
+
             padding: 10px;
             font-size: 16px;
 
@@ -516,6 +513,34 @@
 
         }
 
+        .rate {
+
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: rgba(29, 25, 73, 0.966);
+            padding: 10px;
+            width: 80%;
+            height: 100px;
+            color: whtie;
+            text-align: center;
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            background-color: rgb(204, 0, 78);
+        }
+
+
+
+        .rate h2 {
+            font-size: xx-large;
+        }
+
+        .rate p {
+            font-size: 20px;
+            font-weight: bold;
+        }
 
 
 
@@ -645,8 +670,8 @@
 
         }
 
-     
-        
+
+
 
         .info p {
 
@@ -832,13 +857,13 @@
             .info h3 {
                 margin-top: 110px;
                 margin-bottom: 10px;
-                
+
 
             }
 
             .info p {
                 font-size: 15px;
-                
+
 
             }
 
@@ -1822,7 +1847,7 @@
             <p>${res.results[i].overview}</p>
             <button id="${res.results[i].id}">watch</button><button>Details</button>
         </div>
-        <div class="pic"  style="background-image: url( https://image.tmdb.org/t/p/w500${res.results[i].backdrop_path}         );">
+        <div class="pic"  style="background-image: url( https://image.tmdb.org/t/p/w500${res.results[i].backdrop_path});">
 
         </div>
 
@@ -1909,8 +1934,11 @@
                  <img src="https://image.tmdb.org/t/p/w500${res.poster_path}"></img>
               <p id="name">${res.title}</p>
                  <p id="para">${res.overview}</p>
-                 
-     
+                 <div class="rate">
+                 <h2>Rate</h2>
+                    
+                    <p>${Math.floor(res.vote_average*10)/10 }/10</p>
+                    </div>
              </div>
      
      
@@ -1942,14 +1970,19 @@
      
          <iframe id="if" src=""" frameborder="0" height="100%" width="100%" allowfullscreen ></iframe>
          <div class="detail">
-             <div class="detail_pic">
-                 <img src="https://image.tmdb.org/t/p/w500${res.backdrop_path}"></img>
-              <p id="name">${res.title}</p>
-                 <p id="para">${res.overview}</p>
+            
+                 <img src="https://image.tmdb.org/t/p/w500${res.poster_path}"></img>
+              
                  
      
-             </div>
-     
+            
+             <p id="name">${res.title}</p>
+                 <p id="para">${res.overview}</p>
+                 <div class="rate">
+                 <h2>Rate</h2>
+                    
+                    <p>${Math.floor(res.vote_average *10)/10}/10</p>
+                    </div>
      
          </div>
        
