@@ -266,25 +266,27 @@
         }
 
         .page {
-            padding: 20px;
+            position: relative;
+            padding: 10px;
             height: fit-content;
             display: flex;
-
             justify-content: center;
             align-items: center;
-            background-color: rgba(20, 19, 41, 0.973);
+            background-color: rgba(20, 19, 41, 0.801);
 
         }
 
         .page button {
             border: none;
             height: 50px;
+            font-weight: bold;
+            font-size: 18px;
             width: 50px;
             border-radius: 50%;
             margin-left: 15px;
             color: white;
 
-            background-color: rgba(16, 0, 41, 0.808);
+            background-color: rgb(255, 0, 55);
         }
 
         #cut {
@@ -502,13 +504,7 @@
 
             padding: 10px;
             font-size: 16px;
-
-
-
-
             width: 100%;
-
-
             text-align: center;
 
         }
@@ -779,11 +775,13 @@
 
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 20px;
+            padding: 20px;
+            gap: 10px;
             width: fit-content;
             justify-content: center;
 
-            height: auto;
+            height: fit-content;
+
 
             padding-top: 100px;
             background-color: rgba(20, 19, 41, 0.973);
@@ -818,6 +816,7 @@
         }
 
         #content_Text {
+
             position: relative;
             top: 80px;
             font-size: 40px;
@@ -1937,7 +1936,7 @@
                  <div class="rate">
                  <h2>Rate</h2>
                     
-                    <p>${Math.floor(res.vote_average*10)/10 }/10</p>
+                    <p>${Math.floor(res.vote_average * 10) / 10}/10</p>
                     </div>
              </div>
      
@@ -1981,7 +1980,7 @@
                  <div class="rate">
                  <h2>Rate</h2>
                     
-                    <p>${Math.floor(res.vote_average *10)/10}/10</p>
+                    <p>${Math.floor(res.vote_average * 10) / 10}/10</p>
                     </div>
      
          </div>
