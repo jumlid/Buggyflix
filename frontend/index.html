@@ -99,15 +99,21 @@
                             <span>15m</span>
 
 
-                        </div>
 
+                        </div>
+                        <button
+                            style=" margin-top: 10px; width: 80px; padding: 10px; border-radius: 20px;  background-color: transparent; border: none; font-weight: bold; color: white; background-color: rgb(221, 11, 57);">
+                            Watch</button>
                     </div>
 
 
 
                 </div>
                 <div class=" detai_rate">
+                    <div class="ratting_de">
+                        <p>Ratting <br>10/10</p>
 
+                    </div>
                 </div>
 
 
@@ -150,6 +156,7 @@
             outline: none;
         }
 
+
         .detai_info_Text {
 
             text-align: center;
@@ -165,8 +172,9 @@
 
         .detai_info_Text p {
             font-family: "Comic Relief", system-ui;
-            max-height: 170px;
+
             overflow-x: scroll;
+            max-width: 500px;
         }
 
         .detai_extra_info {
@@ -177,10 +185,6 @@
         }
 
         .detai_extra_info span {
-
-
-
-
             font-weight: bold;
             color: white;
             margin-left: 5px;
@@ -190,34 +194,60 @@
 
         .detai_rate {
 
-            width: 100%;
+
             height: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        .ratting_de {
+
+            width: 200px;
+            border-radius: 20px;
+            height: 150px;
+            background-color: rgb(245, 9, 88);
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .detai_rate p {
+            font-weight: bold;
+            margin-top: auto;
+            margin-bottom: auto;
+            font-size: x-large;
         }
 
         .caste {
-
+            display: none;
             width: 100%;
             height: fit-content;
         }
 
         .detai {
-
+            position: relative;
+          
             height: fit-content;
-            width: 100%;
+            width: 100vw;
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 20px;
             padding: 50px;
 
 
         }
 
         .detai_info {
-
+         
             height: fit-content;
-            width: 100%;
+            width: fit-content;
+
             display: flex;
-            text-align: justify;
+            text-align: center;
         }
 
         .detai_pic img {
@@ -731,11 +761,11 @@
         }
 
         .swipe {
+       
 
-            height: 550px;
             position: relative;
             top: 70px;
-            height: fit-content;
+            height: fit-content !important;
             display: flex;
             flex-direction: row;
 
@@ -1030,6 +1060,20 @@
 
 
         @media (width <=959px) {
+            .detai{
+                flex-direction: column;
+            }
+
+            .detai_info{
+                
+                flex-direction: column;
+                width: 100%;
+            }
+            .detai_info_Text p {
+             
+                
+                max-width: fit-content;
+            }
             .banner {
                 margin-top: 80px;
             }
@@ -1300,6 +1344,15 @@
         }
 
         @media (width <550px) {
+            .detai{
+                padding: 5px;
+             
+                
+            }
+            .detai_info_Text{
+
+                font-size: 15px;
+            }
             .video_player {
                 height: 240px;
             }
@@ -2111,17 +2164,18 @@
 
 
                         </div>
-
+                        <button id="${id}"
+                            style=" margin-top: 10px; width: 80px; padding: 10px; border-radius: 20px;  background-color: transparent; border: none; font-weight: bold; color: white; background-color: rgb(221, 11, 57);">
+                            Watch</button>
                     </div>
 
 
 
                 </div>
                 <div class="detai_rate">
-                    <div class="rate">
-                 <h2>Rate</h2>
-                    
-                    <p>${Math.floor(data.vote_average * 10) / 10}/10</p>
+                    <div class="ratting_de">
+                        <p>Ratting <br> ${Math.floor(data.vote_average * 10) / 10}  /10</p>
+
                     </div>
                 </div>
 
@@ -2176,7 +2230,7 @@
 
         }
         if (!sessionStorage.getItem('play')) {
-            trending()
+              trending()
 
         }
         else {
