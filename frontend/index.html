@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-         <meta name="Bugggflix" content="Watch movie for free">
     <title>BUGGYFLEX</title>
 
 
@@ -1226,7 +1225,7 @@
 
             }
 
-           
+
 
             .box p {
 
@@ -1310,13 +1309,16 @@
                 background-size: contain;
             }
 
+            
+
             .sear_items {
 
                 padding: 10px;
-
-                min-height: 190px;
+                border: 1px solid red;
+                min-height: 200px;
                 height: fit-content;
                 overflow: scroll;
+                z-index: 500;
             }
 
             .sear_mov:first-child {
@@ -1447,7 +1449,7 @@
             }
 
             .box {
-              
+
                 width: 80px;
                 height: 100px;
             }
@@ -1761,7 +1763,17 @@
         // This  function here is for the UI when the search bar is clicked on smaller screen ot will scrool to the top of the screen and open the  display the search bar
         function se() {
             //   console.log('changed flex')
-            window.scrollTo({ top: 0, behavior: "smooth" })
+            //  window.scrollTo({  "behavior": smooth,top: 0 })
+            /*   window.scrollTo({
+                   top: 0,
+                   behavior: "smooth"
+               });*/
+            // window.scrollTo({ top: 0})
+            scroll_up()
+            document.getElementsByClassName('swipe')[0].style.top= 10+"px"
+            
+
+
             document.getElementsByClassName('sear')[0].style.display = 'flex'
             document.getElementById('sear_m').style.display = 'block'
             document.getElementById('sear_m').focus()
@@ -1770,6 +1782,14 @@
             //  document.getElementsByClassName('sear')[0].style.transform='translateX(200)'
 
         }
+        function scroll_up() {
+            window.scrollTo({ top: 0, behavior: "smooth" })
+
+        }
+
+
+
+
         function sear() { // This function too is for search but for smaller div i'll remove this in near future when i'll make my code more redable for now if it work it stay
             let query = sea.value.trim()
             fin.value = ''
@@ -2075,6 +2095,7 @@
             else {
                 if (e.target.id.split('_')[0] != 'sear' && e.target.className.split('_')[0] != 'sear') {
                     document.getElementsByClassName('sear')[0].style.display = 'none'
+                    document.getElementsByClassName('swipe')[0].style.top= 70+"px"
                     //   alert(e.target.id.split('_')[0])
 
                 }
@@ -2135,7 +2156,7 @@
             fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
                 .then(e => e.json())
                 .then(res => {
-                    window.scrollTo({ top: 0, behavior: "smooth" })
+                    scroll_up()    //        window.scrollTo({ top: 0, behavior: "smooth" })
 
                     //    console.log(res)
                     swipe.innerHTML = `<div class="video_player">
@@ -2170,7 +2191,7 @@
         }
 
         function detail(id) {
-            window.scrollTo({ top: 0, behavior: "smooth" })
+            scroll_up()  //     window.scrollTo({ top: 0, behavior: "smooth" })
 
 
             swipe.innerHTML = ` `
@@ -2223,7 +2244,7 @@
             fetch(`https://api.themoviedb.org/3/movie/${sessionStorage.getItem('play')}?api_key=${apikey}`)
                 .then(e => e.json())
                 .then(res => {
-                    window.scrollTo({ top: 0, behavior: "smooth" })
+                    scroll_up() //           window.scrollTo({ top: 0, behavior: "smooth" })
 
                     //    console.log(res)
                     swipe.innerHTML = `<div class="video_player">
