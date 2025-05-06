@@ -2046,19 +2046,28 @@
  
 */
 
+        let route = {
+            "#watch-id=": "",
+            "#movie-detail-id=": ""
 
+
+        }
 
 
 
         // function to get the trending movies
+
         function trending() {
             sessionStorage.clear()
-           
-            if (window.location.hash.includes("#watch")) {
-            
-                window.location.href=window.location.href.split("#")[0]
-            }
-         
+
+
+
+
+
+
+
+
+
             swipe.innerHTML = ` `
             fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en&api_key=${apikey}`)
                 .then(data => data.json())
@@ -2084,6 +2093,9 @@
 
 
                 })
+            if (window.location.hash.startsWith("#movie-detail-id=") || window.location.hash.startsWith("#watch-id=")) {
+                window.location.href = window.location.href.split("#")[0]
+            }
 
         }
 
@@ -2122,7 +2134,7 @@
             } else {
 
                 if (e.target.className === 'details') {
-                    detail(window.location.hash.split("="[1]))
+                    detail(e.target.id)
 
                 }
                 else {
@@ -2133,20 +2145,11 @@
 
 
 
-                // search_box.style.display="none"
-
-
 
 
 
 
             }
-
-
-
-
-
-
 
 
 
@@ -2160,97 +2163,63 @@
         function play(id) {
             window.location.hash = `#watch-id=${id}`
             check()
-            // window.location.reload()
 
-            //    send("getfromid", '/movie/')
 
-            /*
-            
 
-*/
+
         }
-
-        function check(params) {
+        //  trending()
+        function check() {
+            //  trending()
             let url = window.location.hash
-            //   alert(url)
-            if (url.startsWith("#watch-id=")) {
-                swipe.innerHTML = " "
+
+
+            if (url.startsWith("#movie-detail-id=")) {
+
+                movi_detail(window.location.hash.split("=")[1])
+                alert('e')
+
+
+            }
+
+            else if (url.startsWith("#watch-id=")) {
+                alert('wa')
+
                 watch(window.location.hash.split("=")[1])
                 console.log(window.location.hash.split("=")[1])
-                //     alert('done')
             }
             else {
                 trending()
-
             }
+
+            //     alert('done')
+
+
+
+
+
+
+
+
 
 
         }
         check()
 
-
-
         /*
         window.addEventListener('popstate', (e) => {
           
         })
-
+    }
 */
-
-        function watch(id) {
-
-            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
-                .then(e => e.json())
-                .then(res => {
-                    scroll_up()    //        window.scrollTo({ top: 0, behavior: "smooth" })
-
-                    //    console.log(res)
-                    swipe.innerHTML = `<div class="video_player">
-         <div class="ep"></div>
-     
-         <iframe id="if" src=""" frameborder="0" height="100%" width="100%" allowfullscreen ></iframe>
-         <div class="detail">
-             <div class="detail_pic">
-                 <img src="https://image.tmdb.org/t/p/w500${res.poster_path}"></img>
-              <p id="name">${res.title}</p>
-                 <p id="para">${res.overview}</p>
-                 <div class="rate">
-                 <h2>Rate</h2>
-                    
-                    <p>${Math.floor(res.vote_average * 10) / 10}/10</p>
-                    </div>
-             </div>
-     
-     
-         </div>
-       
-     </div> `
-                    //   console.log(window.location.split("=")[1])
-                    let i = document.getElementsByTagName('iframe')[0]
-                    i.src = `https://vidsrc.xyz/embed/movie/${id}`
+        function movi_detail(id) {
 
 
-
-                })
-
-        }
-
-
-
-
-
-
-
-
-        function detail(id) {
-            scroll_up()  //     window.scrollTo({ top: 0, behavior: "smooth" })
-
-
-            swipe.innerHTML = ` `
             fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+
+
                     swipe.innerHTML = ` <div class="detai">
                 <div class="caste"></div>
                 <div class="detai_info">
@@ -2290,6 +2259,60 @@
 
         }
 
+
+        function watch(id) {
+
+            fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
+                .then(e => e.json())
+                .then(res => {
+                    scroll_up()    //        window.scrollTo({ top: 0, behavior: "smooth" })
+
+                    //    console.log(res)
+                    swipe.innerHTML = `<div class="video_player">
+         <div class="ep"></div>
+     
+         <iframe id="if" src="" frameborder="0" height="100%" width="100%" allowfullscreen ></iframe>
+         <div class="detail">
+             <div class="detail_pic">
+                 <img src="https://image.tmdb.org/t/p/w500${res.poster_path}"></img>
+              <p id="name">${res.title}</p>
+                 <p id="para">${res.overview}</p>
+                 <div class="rate">
+                 <h2>Rate</h2>
+                    
+                    <p>${Math.floor(res.vote_average * 10) / 10}/10</p>
+                    </div>
+             </div>
+     
+     
+         </div>
+       
+     </div> `
+                    //   console.log(window.location.split("=")[1])
+                    let i = document.getElementsByTagName('iframe')[0]
+                    i.src = `https://vidsrc.xyz/embed/movie/${id}`
+
+
+
+                })
+
+        }
+
+
+
+
+
+
+
+
+        function detail(id) {
+            window.location.hash = `#movie-detail-id=${id}`
+            scroll_up()  //     window.scrollTo({ top: 0, behavior: "smooth" })
+            check()
+
+
+        }
+
         // console.log(sessionStorage.getItem('play'))
         /*
         if (sessionStorage.getItem("play")) {
@@ -2298,7 +2321,7 @@
                 .then(e => e.json())
                 .then(res => {
                     scroll_up() //           window.scrollTo({ top: 0, behavior: "smooth" })
-
+ 
                     //    console.log(res)
                     swipe.innerHTML = `<div class="video_player">
          <div class="ep"></div>
@@ -2325,15 +2348,16 @@
                     console.log(sessionStorage.getItem('play'))
                     let i = document.getElementsByTagName('iframe')[0]
                     i.src = `https://vidsrc.xyz/embed/movie/${sessionStorage.getItem('play')}`
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
                 })
-
+ 
         }
         */
+
         if (!sessionStorage.getItem('play')) {
 
         }
