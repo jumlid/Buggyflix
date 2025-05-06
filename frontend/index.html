@@ -1309,7 +1309,7 @@
                 background-size: contain;
             }
 
-            
+
 
             .sear_items {
 
@@ -1770,8 +1770,8 @@
                });*/
             // window.scrollTo({ top: 0})
             scroll_up()
-            document.getElementsByClassName('swipe')[0].style.top= 10+"px"
-            
+            document.getElementsByClassName('swipe')[0].style.top = 10 + "px"
+
 
 
             document.getElementsByClassName('sear')[0].style.display = 'flex'
@@ -2053,6 +2053,12 @@
         // function to get the trending movies
         function trending() {
             sessionStorage.clear()
+           
+            if (window.location.hash.includes("#watch")) {
+            
+                window.location.href=window.location.href.split("#")[0]
+            }
+         
             swipe.innerHTML = ` `
             fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en&api_key=${apikey}`)
                 .then(data => data.json())
@@ -2095,7 +2101,7 @@
             else {
                 if (e.target.id.split('_')[0] != 'sear' && e.target.className.split('_')[0] != 'sear') {
                     document.getElementsByClassName('sear')[0].style.display = 'none'
-                    document.getElementsByClassName('swipe')[0].style.top= 70+"px"
+                    document.getElementsByClassName('swipe')[0].style.top = 70 + "px"
                     //   alert(e.target.id.split('_')[0])
 
                 }
@@ -2116,7 +2122,7 @@
             } else {
 
                 if (e.target.className === 'details') {
-                    detail(e.target.id)
+                    detail(window.location.hash.split("="[1]))
 
                 }
                 else {
@@ -2152,7 +2158,47 @@
 
 
         function play(id) {
+            window.location.hash = `#watch-id=${id}`
+            check()
+            // window.location.reload()
+
             //    send("getfromid", '/movie/')
+
+            /*
+            
+
+*/
+        }
+
+        function check(params) {
+            let url = window.location.hash
+            //   alert(url)
+            if (url.startsWith("#watch-id=")) {
+                swipe.innerHTML = " "
+                watch(window.location.hash.split("=")[1])
+                console.log(window.location.hash.split("=")[1])
+                //     alert('done')
+            }
+            else {
+                trending()
+
+            }
+
+
+        }
+        check()
+
+
+
+        /*
+        window.addEventListener('popstate', (e) => {
+          
+        })
+
+*/
+
+        function watch(id) {
+
             fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apikey}`)
                 .then(e => e.json())
                 .then(res => {
@@ -2179,7 +2225,7 @@
          </div>
        
      </div> `
-                    console.log(id)
+                    //   console.log(window.location.split("=")[1])
                     let i = document.getElementsByTagName('iframe')[0]
                     i.src = `https://vidsrc.xyz/embed/movie/${id}`
 
@@ -2187,8 +2233,14 @@
 
                 })
 
-
         }
+
+
+
+
+
+
+
 
         function detail(id) {
             scroll_up()  //     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -2239,6 +2291,7 @@
         }
 
         // console.log(sessionStorage.getItem('play'))
+        /*
         if (sessionStorage.getItem("play")) {
             //   alert('found')
             fetch(`https://api.themoviedb.org/3/movie/${sessionStorage.getItem('play')}?api_key=${apikey}`)
@@ -2280,8 +2333,8 @@
                 })
 
         }
+        */
         if (!sessionStorage.getItem('play')) {
-            trending()
 
         }
         else {
