@@ -1924,7 +1924,7 @@
 
             const res = await fetch(`https://api.themoviedb.org/3/trending/movie/week?language=en&api_key=${apikey}&page=${page}`)
             // console.log('page', page)
-            onpage = page
+            //  onpage = page
             //   console.log('onpage', onpage)
             const data = await res.json()
             data.results.forEach(element => {
@@ -1966,98 +1966,49 @@
 
 
 
+        // This function is to increase the page contain  
 
-
-
+        let page = 1
         document.getElementById('page').innerText = onpage
-        get_page(onpage)
+        //  get_page(onpage)
         function forward() {
+            scroll_up()
             video.innerHTML = ` `
-            onpage++
-            document.getElementById('page').innerText = onpage
-            get_page(onpage)
+            onpage += 5
+            page++
+            document.getElementById('page').innerText = page
+            more_content(onpage)
+            //   console.log("o", onpage)
 
         }
         function backward() {
+            scroll_up()
             video.innerHTML = ` `
-            onpage--
-            document.getElementById('page').innerText = onpage
-            get_page(onpage)
+            if (onpage != 5) {
+                //    alert('w')
+                onpage -= 5
+                page--
+
+
+            }
+            document.getElementById('page').innerText = page
+            more_content(onpage)
 
         }
-        /* This code is to increase the item per page contain from 20 to 100 it's facing some erros so for now it's on hold
-               for (let i = onpage; i < onpage + 5; i++) { // This function is to increase the content per page by default a page contain 20 item by using a for loop i can loop the same function 5 times meaning 20*5 more content per page 
-                   //    get_page(i);
-       
-               }
-       
-       
-       
-       
-       
-               let click = 1
-       
-       
-       
-       
-       // console.log(onpage)
- 
-       function back() {
-           console.log('click', click)
-           video.innerHTML = ` `
-           alert('back')
-           // console.log('wwas', c)
-           //onpage--
-           //  console.log('backdwaw',onpage)
-           if (!onpage - 5 * 2 < 10) {
-               let te = onpage - 5 * 2
-               for (let i = onpage; i != onpage - 5; i--) {
-                   te++
- 
-                   //console.log('temp', i)
-                   console.log("back ", te)
- 
-                   get_page(te)
- 
- 
- 
-               }
-           }
-           else {
-               console.log('wa')
-           }
- 
-           //   c--
- 
- 
- 
- 
- 
- 
- 
-       }
- 
-        // send(get_page)
-        function forward() {
-            click++
-            console.log('click', click)
-            alert('forward')
-            video.innerHTML = ` `
- 
-            onpage++
-            for (let i = onpage; i < onpage + 5; i++) {
-                //   console.log('forward', i)
- 
-                get_page(i)
+        function more_content(times) {
+            //      console.log('a', times)
+            onpage = times
+            for (let index = onpage - 5; index != times; index++) {
+                get_page(index)
+                //  console.log(index)
+
+
             }
- 
- 
- 
- 
+
+
         }
- 
- 
-*/
+        more_content(5)
+
 
         let route = {
             "#watch-id=": "",
@@ -2325,52 +2276,6 @@
 
 
         }
-
-        // console.log(sessionStorage.getItem('play'))
-        /*
-        if (sessionStorage.getItem("play")) {
-            //   alert('found')
-            fetch(`https://api.themoviedb.org/3/movie/${sessionStorage.getItem('play')}?api_key=${apikey}`)
-                .then(e => e.json())
-                .then(res => {
-                    scroll_up() //           window.scrollTo({ top: 0, behavior: "smooth" })
- 
-                    //    console.log(res)
-                    swipe.innerHTML = `<div class="video_player">
-         <div class="ep"></div>
-     
-         <iframe id="if" src=""" frameborder="0" height="100%" width="100%" allowfullscreen ></iframe>
-         <div class="detail">
-            
-                 <img src="https://image.tmdb.org/t/p/w500${res.poster_path}"></img>
-              
-                 
-     
-            
-             <p id="name">${res.title}</p>
-                 <p id="para">${res.overview}</p>
-                 <div class="rate">
-                 <h2>Rate</h2>
-                    
-                    <p>${Math.floor(res.vote_average * 10) / 10}/10</p>
-                    </div>
-     
-         </div>
-       
-     </div> `
-                    console.log(sessionStorage.getItem('play'))
-                    let i = document.getElementsByTagName('iframe')[0]
-                    i.src = `https://vidsrc.xyz/embed/movie/${sessionStorage.getItem('play')}`
- 
- 
- 
- 
- 
-                })
- 
-        }
-        */
-
         if (!sessionStorage.getItem('play')) {
 
         }
