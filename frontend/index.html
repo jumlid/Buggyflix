@@ -1775,13 +1775,7 @@
 
         // This  function here is for the UI when the search bar is clicked on smaller screen ot will scrool to the top of the screen and open the  display the search bar
         function se() {
-            //   console.log('changed flex')
-            //  window.scrollTo({  "behavior": smooth,top: 0 })
-            /*   window.scrollTo({
-                   top: 0,
-                   behavior: "smooth"
-               });*/
-            // window.scrollTo({ top: 0})
+
             scroll_up()
             document.getElementsByClassName('swipe')[0].style.top = 10 + "px"
 
@@ -1813,8 +1807,10 @@
                 .then(a => {
                     let i = 0
                     if (a.results.length >= 20) {
+                      //  console.log('wasdwa')
                         item.innerHTML = ' '
                         while (i != 20) {
+                       //     console.log()
 
                             item.innerHTML += ` <div class="sear_mov" id="${a.results[i].id}">
                                 <div class="sear_pic" id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ></div>
@@ -1829,14 +1825,16 @@
 
                     }
                     else {
+                    //    console.log('bruh')
+                        item.innerHTML = ' '
                         while (i < a.results.length) {
-                            item.innerHTML += ` <div class="sear_mov" id="${a.results[i].id}>
+                            item.innerHTML += ` <div class="sear_mov" id="${a.results[i].id}">
+                                <div class="sear_pic" id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ></div>
+<div class="sear_name "id="${a.results[i].id}" >${a.results[i].title}</div></div>`
 
-<div class="sear_pic" id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path});    height: 100%; width: 40%;  background-size: cover;" ></div>
-<div class="sear_name "id="${a.results[i].id}" >${a.results[i].title}</div>
 
-</div>`
                             i++
+
                             //  console.log('less', i)
 
                         }
