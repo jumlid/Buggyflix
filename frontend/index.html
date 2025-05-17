@@ -142,7 +142,7 @@
                 << </button>
                     <button onclick="backward()">
                         < </button>
-                            <button onclick="back()">
+                            <button>
                                 <p id="page">1</p>
 
                             </button>
@@ -1988,32 +1988,46 @@
             //   console.log("o", onpage)
 
         }
-        function next() {
-            // scroll_up()
+        function last() {
+            scroll_up()
             video.innerHTML = ` `
-            onpage += 5
-            page ++
-            document.getElementById('pag').innerText = page + 1
+            onpage = 50
+            page = 50
             document.getElementById('page').innerText = page
+            document.getElementById('pag').innerText = 'X'
             more_content(onpage)
             //   console.log("o", onpage)
 
         }
-        function back() {
+        function next() {
+            // scroll_up()
+            video.innerHTML = ` `
+            if (onpage != 50) {
+                onpage += 5
+                page++
+                document.getElementById('pag').innerText = page + 1
+                document.getElementById('page').innerText = page
+            }
+
+            more_content(onpage)
+            //   console.log("o", onpage)
+
+        }
+        function starting() {
             scroll_up()
             video.innerHTML = ` `
             if (onpage != 5) {
                 //    alert('w')
-                onpage -= 5
-                page -= 1
-                document.getElementById('pag').innerText = page +1
-                document.getElementById('page').innerText = page
+                onpage = 5
+                page = 1
 
+                document.getElementById('pag').innerText = page + 1
             }
-
+            document.getElementById('page').innerText = page
             more_content(onpage)
 
         }
+
         function backward() {
             scroll_up()
             video.innerHTML = ` `
@@ -2022,7 +2036,7 @@
                 onpage -= 5
                 page--
 
-                document.getElementById('pag').innerText = page - 1
+                document.getElementById('pag').innerText = page + 1
             }
             document.getElementById('page').innerText = page
             more_content(onpage)
