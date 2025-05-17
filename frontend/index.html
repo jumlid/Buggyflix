@@ -138,13 +138,21 @@
 
         </div>
         <div class="page">
-            <button onclick="backward()">
-                < </button>
-                    <button>
-                        <p id="page">1</p>
-                    </button>
+            <button onclick="starting()">
+                << </button>
+                    <button onclick="backward()">
+                        < </button>
+                            <button onclick="back()">
+                                <p id="page">1</p>
 
-                    <button onclick=" forward()"> > </button>
+                            </button>
+                            <button onclick="next()">
+                                <p id="pag">2</p>
+
+                            </button>
+
+                            <button onclick=" forward()"> > </button>
+                            <button onclick="last()">>></button>
         </div>
 
     </section>
@@ -1807,10 +1815,10 @@
                 .then(a => {
                     let i = 0
                     if (a.results.length >= 20) {
-                      //  console.log('wasdwa')
+                        //  console.log('wasdwa')
                         item.innerHTML = ' '
                         while (i != 20) {
-                       //     console.log()
+                            //     console.log()
 
                             item.innerHTML += ` <div class="sear_mov" id="${a.results[i].id}">
                                 <div class="sear_pic" id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ></div>
@@ -1825,7 +1833,7 @@
 
                     }
                     else {
-                    //    console.log('bruh')
+                        //    console.log('bruh')
                         item.innerHTML = ' '
                         while (i < a.results.length) {
                             item.innerHTML += ` <div class="sear_mov" id="${a.results[i].id}">
@@ -1975,8 +1983,35 @@
             onpage += 5
             page++
             document.getElementById('page').innerText = page
+            document.getElementById('pag').innerText = page + 1
             more_content(onpage)
             //   console.log("o", onpage)
+
+        }
+        function next() {
+            // scroll_up()
+            video.innerHTML = ` `
+            onpage += 5
+            page ++
+            document.getElementById('pag').innerText = page + 1
+            document.getElementById('page').innerText = page
+            more_content(onpage)
+            //   console.log("o", onpage)
+
+        }
+        function back() {
+            scroll_up()
+            video.innerHTML = ` `
+            if (onpage != 5) {
+                //    alert('w')
+                onpage -= 5
+                page -= 1
+                document.getElementById('pag').innerText = page +1
+                document.getElementById('page').innerText = page
+
+            }
+
+            more_content(onpage)
 
         }
         function backward() {
@@ -1987,7 +2022,7 @@
                 onpage -= 5
                 page--
 
-
+                document.getElementById('pag').innerText = page - 1
             }
             document.getElementById('page').innerText = page
             more_content(onpage)
