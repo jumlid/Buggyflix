@@ -1544,6 +1544,7 @@
         }
         // If users has a data name is login in localstorage it will automatically login the users 
         if (localStorage.getItem('islogin')) {
+            document.getElementsByClassName('note')[0].style.display = 'none'
             let account = document.getElementById('account')
             account.style.borderRadius = '20px'
             account.style.backgroundImage = 'url(src/icon.jpeg)'
@@ -2000,7 +2001,7 @@
 
         }
         function next() {
-            // scroll_up()
+            scroll_up()
             video.innerHTML = ` `
             if (onpage != 50) {
                 onpage += 5
