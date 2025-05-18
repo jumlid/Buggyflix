@@ -1551,7 +1551,7 @@
             account.style.backgroundSize = 'contain'
             account.onclick = accountinfo
 
-            fetch('https://buggyflixserver-production.up.railway.app/users')
+            fetch('<Replace this with the API>/users')
                 .then(res => res.json())
                 .then(data => {
                     let id = localStorage.getItem('islogin')
@@ -1606,7 +1606,7 @@
                         name = btoa(document.getElementById('username').value.trim())
                         password = btoa(document.getElementById('password').value.trim())
                         //    console.log('request made')
-                        fetch('https://buggyflixserver-production.up.railway.app/already', {
+                        fetch('<Replace this with the API>/already', {
                             "method": "post",
                             "headers": { "Content-Type": "application/json" },
                             "body": JSON.stringify({ name, password })
@@ -1619,7 +1619,7 @@
                                 }
                                 if (res.status === 200) {
                                     //   console.log('send another req')
-                                    fetch('https://buggyflixserver-production.up.railway.app/users', {
+                                    fetch('<Replace this with the API>/users', {
                                         "method": "post",
                                         "headers": { "Content-Type": "application/json" },
                                         "body": JSON.stringify({ name, password })
@@ -1657,7 +1657,7 @@
                     name = btoa(document.getElementById('username').value.trim())
                     password = btoa(document.getElementById('password').value.trim())
                     //    console.log('request made')
-                    fetch('https://buggyflixserver-production.up.railway.app/already', {
+                    fetch('<Replace this with the API>/already', {
                         "method": "post",
                         "headers": { "Content-Type": "application/json" },
                         "body": JSON.stringify({ name, password })
@@ -1735,7 +1735,7 @@
                         others = undefined
         
                     }
-                    fetch('https://buggyflixserver-production.up.railway.app/movie', {
+                    fetch('<Replace this with the API>/movie', {
                         "method": "post",
                         "headers": { "Content-Type": "application/json" },
                         "body": JSON.stringify({ method, subfix, others })
