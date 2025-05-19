@@ -1527,6 +1527,7 @@
 
         // This function is to create new users
         function createaccount() {
+            /*
 
             let content = document.getElementsByClassName("video")[0]
             document.getElementById('hea').innerText = "Register"
@@ -1537,7 +1538,11 @@
 
 
 
-
+*/
+document.getElementsByClassName('log')[0].innerHTML =`
+<h1>Server error</h1>
+<p>I do apologies for the hardship but  due to some backend error this feature is  remove please wait a week or so to use this feature again. I'll Try to fix it ASAP after my exams<p>
+`
             login_class.style.display = "flex"
 
 
@@ -1551,7 +1556,7 @@
             account.style.backgroundSize = 'contain'
             account.onclick = accountinfo
 
-            fetch('<Replace this with the API>/users')
+            fetch('/users')
                 .then(res => res.json())
                 .then(data => {
                     let id = localStorage.getItem('islogin')
@@ -1606,7 +1611,7 @@
                         name = btoa(document.getElementById('username').value.trim())
                         password = btoa(document.getElementById('password').value.trim())
                         //    console.log('request made')
-                        fetch('<Replace this with the API>/already', {
+                        fetch('/already', {
                             "method": "post",
                             "headers": { "Content-Type": "application/json" },
                             "body": JSON.stringify({ name, password })
@@ -1619,7 +1624,7 @@
                                 }
                                 if (res.status === 200) {
                                     //   console.log('send another req')
-                                    fetch('<Replace this with the API>/users', {
+                                    fetch('/users', {
                                         "method": "post",
                                         "headers": { "Content-Type": "application/json" },
                                         "body": JSON.stringify({ name, password })
@@ -1657,7 +1662,7 @@
                     name = btoa(document.getElementById('username').value.trim())
                     password = btoa(document.getElementById('password').value.trim())
                     //    console.log('request made')
-                    fetch('<Replace this with the API>/already', {
+                    fetch('/already', {
                         "method": "post",
                         "headers": { "Content-Type": "application/json" },
                         "body": JSON.stringify({ name, password })
@@ -1735,7 +1740,7 @@
                         others = undefined
         
                     }
-                    fetch('<Replace this with the API>/movie', {
+                    fetch('/movie', {
                         "method": "post",
                         "headers": { "Content-Type": "application/json" },
                         "body": JSON.stringify({ method, subfix, others })
@@ -2300,7 +2305,7 @@
          </div>
        
      </div> `
-                    document.title = `watching ${res.title}`
+                    document.title = `Watching ${res.title}`
                     //   console.log(window.location.split("=")[1])
                     let i = document.getElementsByTagName('iframe')[0]
                     i.src = `https://vidsrc.xyz/embed/movie/${id}`
