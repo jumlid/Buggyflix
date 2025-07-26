@@ -1812,6 +1812,7 @@ document.getElementsByClassName('log')[0].innerHTML =`
 
 
         function sear() { // This function too is for search but for smaller div i'll remove this in near future when i'll make my code more redable for now if it work it stay
+            // update: and "near future never really come :)"
             let query = sea.value.trim()
             fin.value = ''
             let url = `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${apikey}`
@@ -1827,7 +1828,7 @@ document.getElementsByClassName('log')[0].innerHTML =`
                             //     console.log()
 
                             item.innerHTML += ` <div class="sear_mov" id="${a.results[i].id}">
-                                <div class="sear_pic" id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ></div>
+                                <div class="sear_pic" id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/original${a.results[i].poster_path})" ></div>
 <div class="sear_name "id="${a.results[i].id}" >${a.results[i].title}</div></div>`
 
 
@@ -1843,7 +1844,7 @@ document.getElementsByClassName('log')[0].innerHTML =`
                         item.innerHTML = ' '
                         while (i < a.results.length) {
                             item.innerHTML += ` <div class="sear_mov" id="${a.results[i].id}">
-                                <div class="sear_pic" id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ></div>
+                                <div class="sear_pic" id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/original${a.results[i].poster_path})" ></div>
 <div class="sear_name "id="${a.results[i].id}" >${a.results[i].title}</div></div>`
 
 
@@ -1890,7 +1891,7 @@ document.getElementsByClassName('log')[0].innerHTML =`
 
 
 
-                    <div class="img_search" data-id="find"   id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ; >
+                    <div class="img_search" data-id="find"   id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/original${a.results[i].poster_path})" ; >
 
                     </div>
                     <p  data-id="find" id="${a.results[i].id}" >${a.results[i].title}</p>
@@ -1909,7 +1910,7 @@ document.getElementsByClassName('log')[0].innerHTML =`
 
 
 
-                    <div class="img_search" style="background-image: url(https://image.tmdb.org/t/p/w500${a.results[i].poster_path})" ; >
+                    <div class="img_search" style="background-image: url(https://image.tmdb.org/t/p/original${a.results[i].poster_path})" ; >
 
                     </div>
                     <p>${a.results[i].title}</p>
@@ -1949,7 +1950,7 @@ document.getElementsByClassName('log')[0].innerHTML =`
                         
                         </div>
                 <div class="im" >
-                    <img src="https://image.tmdb.org/t/p/w500${element.poster_path}" > </img> 
+                    <img src="https://image.tmdb.org/t/p/original${element.poster_path}" > </img> 
                     </div>
                 <div class="inf">
                 <p>${element.title}</p>
@@ -2098,7 +2099,7 @@ document.getElementsByClassName('log')[0].innerHTML =`
             <p>${res.results[i].overview}</p>
             <button id="${res.results[i].id}">watch</button><button class="details"   id="${res.results[i].id}"    >Details</button>
         </div>
-        <div class="pic"  style="background-image: url( https://image.tmdb.org/t/p/w500${res.results[i].backdrop_path});">
+        <div class="pic"  style="background-image: url( https://image.tmdb.org/t/p/original${res.results[i].backdrop_path});">
 
         </div>
 
@@ -2240,7 +2241,7 @@ document.getElementsByClassName('log')[0].innerHTML =`
                     swipe.innerHTML = ` <div class="detai">
                 <div class="caste"></div>
                 <div class="detai_info">
-                    <div class="detai_pic"><img src="https://image.tmdb.org/t/p/w500${data.poster_path}" alt=""></div>
+                    <div class="detai_pic"><img src="https://image.tmdb.org/t/p/original${data.poster_path}" alt=""></div>
                     <div class="detai_info_Text">
                         <h2>${data.title}</h2>
                         <p>${data.overview}</p>
@@ -2291,7 +2292,7 @@ document.getElementsByClassName('log')[0].innerHTML =`
          <iframe id="if" src="" frameborder="0" height="100%" width="100%" allowfullscreen ></iframe>
          <div class="detail">
              <div class="detail_pic">
-                 <img src="https://image.tmdb.org/t/p/w500${res.poster_path}"></img>
+                 <img src="https://image.tmdb.org/t/p/original${res.poster_path}"></img>
               <p id="name">${res.title}</p>
                  <p id="para">${res.overview}</p>
                  <div class="rate">
