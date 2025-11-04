@@ -473,7 +473,7 @@
 
             position: fixed;
             inset: 0;
-            display: flex;
+            display: none;
 
 
             justify-content: center;
@@ -521,8 +521,8 @@
             position: fixed;
             overflow: scroll;
             display: none;
-            top: 70px;
-            right: 275px;
+            top: 50px;
+            right: 170px;
             width: 300px;
             height: auto;
             max-height: 300px;
@@ -540,7 +540,7 @@
         .first {
             display: flex;
             justify-content: center;
-            background-color: rgba(16, 15, 36, 0.925);
+            background-color: rgb(5, 4, 12);
             padding: 10px;
             overflow: hidden;
             border-radius: 12px;
@@ -549,12 +549,16 @@
         }
 
         .first p {
+
             position: relative;
             top: 40px;
             width: 100%;
             display: flex;
-            justify-content: center;
-            align-items: center;
+
+            text-align: center;
+
+
+            overflow: hidden;
 
 
             height: 100%;
@@ -607,7 +611,7 @@
             backdrop-filter: blur(10px);
             background-color: rgba(19, 17, 41, 0.904);
             width: 100vw;
-            height: 70px;
+            height: 50px;
             display: flex;
             z-index: 5;
 
@@ -624,7 +628,7 @@
         }
 
         iframe {
-            height: 98%;
+            height: 100%;
         }
 
 
@@ -643,6 +647,7 @@
         .detail {
 
             width: 40%;
+
         }
 
 
@@ -661,6 +666,9 @@
         }
 
         #name {
+
+            overflow-x: hidden;
+            height: 30px;
 
             margin-top: 10px;
             font-size: 20px;
@@ -724,8 +732,8 @@
         #search {
             border: none;
             padding-left: 10px;
-            height: 40px;
-            width: 300px;
+            height: 30px;
+            width: 200px;
             border-radius: 20px;
             margin-left: auto;
             outline: none;
@@ -789,14 +797,18 @@
         .swipe {
 
 
+
             position: relative;
-            top: 70px;
+
+            top: 50px !important;
+            overflow: hidden;
+
             height: fit-content !important;
             display: flex;
             flex-direction: row;
 
 
-            overflow: hidden;
+
         }
 
         .spotlight {
@@ -835,7 +847,7 @@
 
 
             text-align: center;
-            padding-top: 300px;
+            padding-top: 290px;
             height: 90%;
 
 
@@ -945,6 +957,9 @@
 
         .video {
 
+
+            margin-top: -5px;
+
             display: flex;
 
 
@@ -1033,6 +1048,12 @@
         }
 
         @media (width <1425px) {
+            #para {
+
+                font-size: 12px;
+
+            }
+
             .banner {
                 margin-top: 70px;
             }
@@ -1072,26 +1093,26 @@
 
         }
 
+        /*
         @media (width<=1262px) {
-            .video_player {
-                height: 480px;
+           
+
+        }
+
+
+*/
+
+        @media (width <=1350px) {
+            .detai {
+                flex-direction: column;
             }
+
 
 
             .ep {
                 display: none;
             }
 
-        }
-
-        @media (Width <1000px) {
-
-
-            .video_player {
-                display: flex;
-                flex-direction: column;
-
-            }
 
             .detail {
                 display: none;
@@ -1101,18 +1122,6 @@
 
 
 
-            }
-
-
-
-
-        }
-
-
-
-        @media (width <=959px) {
-            .detai {
-                flex-direction: column;
             }
 
             .detai_info {
@@ -1132,7 +1141,7 @@
             }
 
             .video_player {
-                height: 460px;
+                height: 650px;
             }
 
             #search {
@@ -1279,9 +1288,10 @@
 
             .sear {
                 padding-top: 100px;
+                background-color: rgba(10, 8, 24, 0.897);
+                height: 400px;
 
-                height: 250px;
-                display: none;
+                display: non;
                 flex-direction: column;
                 overflow-x: scroll;
                 /*
@@ -1333,6 +1343,7 @@
                 height: fit-content;
                 overflow: scroll;
                 z-index: 500;
+
             }
 
             .sear_mov:first-child {
@@ -1352,6 +1363,7 @@
                 border-radius: 20px;
                 margin-bottom: 10px;
                 background-color: rgba(16, 15, 36, 0.925);
+                background-color: rgb(5, 4, 12);
             }
 
             .sear_pic {
@@ -1778,6 +1790,7 @@
 
             }
             else {
+                document.getElementsByClassName("swipe")[0].style.marginTop = 0 + "px"
                 //      document.getElementById('search_but').onclick = search()
                 document.getElementsByClassName('sear')[0].style.display = 'none'
             }
@@ -1791,7 +1804,9 @@
 
 
 
-        }// This is to get to start the search bar if user  enter a intput
+        }
+
+        // This is to get to start the search bar if user  enter a intput
         let sea = document.getElementById('sear_m')
         sea.addEventListener('input', () => {
 
@@ -1810,6 +1825,9 @@
             document.getElementsByClassName('sear')[0].style.display = 'flex'
             document.getElementById('sear_m').style.display = 'block'
             document.getElementById('sear_m').focus()
+            document.getElementsByClassName("swipe")[0].style.marginTop = -50 + "px"
+
+            // alert('w')
 
 
             //  document.getElementsByClassName('sear')[0].style.transform='translateX(200)'
@@ -1839,7 +1857,7 @@
                             //     console.log()
 
                             item.innerHTML += ` <div class="sear_mov" id="${a.results[i].id}">
-                                <div class="sear_pic" id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w154${a.results[i].poster_path})" ></div>
+                                <div class="sear_pic" id="${a.results[i].id}" style="background-image: url(https://image.tmdb.org/t/p/w154${a.results[i].backdrop_path})" ></div>
 <div class="sear_name "id="${a.results[i].id}" >${a.results[i].title}</div></div>`
 
 
@@ -2143,6 +2161,7 @@
                 if (e.target.id.split('_')[0] != 'sear' && e.target.className.split('_')[0] != 'sear') {
                     document.getElementsByClassName('sear')[0].style.display = 'none'
                     document.getElementsByClassName('swipe')[0].style.top = 70 + "px"
+                    document.getElementsByClassName("swipe")[0].style.marginTop = 0 + "px"
                     //   alert(e.target.id.split('_')[0])
 
                 }
@@ -2320,8 +2339,8 @@
                     document.title = `Watching ${res.title}`
                     //   console.log(window.location.split("=")[1])
                     let i = document.getElementsByTagName('iframe')[0]
-                   // i.src = `https://vidsrc.xyz/embed/movie/${id}`
-                    i.src=`https://www.2embed.skin/embed/${id}`
+                    // i.src = `https://vidsrc.xyz/embed/movie/${id}`
+                    i.src = `https://www.2embed.skin/embed/${id}`
 
 
 
